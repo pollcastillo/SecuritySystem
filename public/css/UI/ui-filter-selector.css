@@ -1,0 +1,40 @@
+.ui\:filter-selector {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    top: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.ui\:filter-selector .filter-content {
+    height: 170px;
+    width: 500px;
+    background-color: #0d0d0d;
+    border: var(--border);
+    border-radius: 8px;
+    margin-top: 35px;
+}
+
+.ui\:filter-selector .search-filter {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    border-bottom: var(--border);
+    padding: 0 8px;
+}
+
+
+.ui\:filter-selector div input {
+    width: 100%;
+    background-color: transparent;
+    height: 40px;
+    border-radius: none !important;
+    font-size: 16px;
+    padding: 0 8px;
+
+}

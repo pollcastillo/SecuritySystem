@@ -1,0 +1,123 @@
+import getData from '../../API/GetData.js';
+import { translateStates } from '../../functions/TranslateStates.js';
+import { updateDate } from '../../functions/UpdateDate.js';
+import { checkUndefinedData } from '../../functions/CheckUndefinedData.js';
+
+class ClientsView {
+    private url: string = "../../data/User.json";
+
+    public async render() {
+        const usersData: any = await getData(this.url);
+        const content: HTMLElement = document.getElementById("content")!;
+        const clients: HTMLElement = document.createElement("div");
+        clients.id = "clients-content";
+        clients.innerHTML = /*html*/`
+            <div class="content-header">
+                <h1>Clients</h1>
+
+                <div class="ui:view-controls">
+                    <button class="control-button" id="filter"><i class="ph ph-funnel"></i></button>
+                    <div class="search">
+                        <label for="search"><i class="ph ph-magnifying-glass"></i></label>
+                        <input type="search" name="search" id="search" placeholder="Search in clients"/>
+                    </div>
+                </div>
+            </div>
+
+            <table id="users">
+                <thead>
+                    <tr>
+                        <th class="text:noBreakline">#</th>
+                        <th class="text:noBreakline">Client Name</th>
+                        <th class="text:noBreakline">Date Added</th>
+                        <th class="text:noBreakline">Added by</th>
+                        <th class="text:noBreakline">Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody id="table-body"></tbody>
+            </table>
+        `;
+
+        content.appendChild(clients);
+
+        this.renderClients("table-body", usersData); // render users into table
+
+        const filter = document.getElementById("filter");
+        filter?.addEventListener("click", (): void => {
+            this.showFilterSelector();
+        });
+    }
+
+    private async renderClients(tableID: string, data: any) {
+        const table = document.getElementById(tableID);
+
+        for (let i = 0; i < await data.length; i++) {
+            const _USER = await data[i];
+            const row: HTMLTableRowElement = document.createElement("tr")! as HTMLTableRowElement;
+
+            row.id = await _USER.id;
+
+            row.innerHTML = /*html*/`
+                <td style="width: fit-content">${i + 1}</td>
+                <td class="text:noBreakline">${await checkUndefinedData(_USER.firstName)} ${await checkUndefinedData(_USER.lastName)}</td>
+                <td class="text:gray text:noBreakline">${updateDate(await checkUndefinedData(_USER.createdDate))}</td>
+                <td class="text:gray text:limit">${await checkUndefinedData(_USER.createdBy)}</td>
+                <td class="text:gray"><span class="table:state data:${await _USER.state.name.toLowerCase()}">${translateStates(await checkUndefinedData(_USER.state.name))}</span></td>
+                <div class="table:button-group">
+                    <button data-id="${await _USER.id}"><i class="ph ph-pencil"></i></button>
+                    <button data-id="${await _USER.id}"><i class="ph ph-info"></i></button>
+                    <button data-id="${await _USER.id}"><i class="ph ph-recycle text:red"></i></button>
+                </div>
+            `;
+
+            console.log(i);
+
+            table?.appendChild(row);
+        }
+    }
+
+    private async showFilterSelector() {
+        const content = document.getElementById("content");
+        const filter = document.createElement("div");
+        filter.id = "filter-selector";
+        filter.classList.add("ui:filter-selector");
+
+        filter.innerHTML = /*html*/`
+            <div class="filter-content">
+                <div class="search-filter">
+                    <input type="search" id="text-filter" placeholder="search">
+                    <button id="close"><i class="ph ph-x text:red"></i></div>
+                </div>
+            </div>
+        `;
+
+        content?.appendChild(filter);
+
+        const FILTER: HTMLElement = document.getElementById("filter-selector")! as HTMLElement;
+        const TEXT_FILTER: HTMLInputElement = document.getElementById("text-filter")! as HTMLInputElement;
+        const CLOSE_BUTTON: HTMLButtonElement = document.getElementById("close")! as HTMLButtonElement;
+
+        // Añadir foco al input al abrir el filtro
+        TEXT_FILTER.focus();
+
+        // Cerrar el filtro al presionar el botón "x"
+        CLOSE_BUTTON.addEventListener("click", (): void => {
+            FILTER.remove();
+        });
+
+        // // Cerrar el filtro al presionar "Esc"
+        // FILTER.addEventListener("keyup", (e) => {
+        //     if (e.key === "Escape") {
+        //         FILTER.remove();
+        //     }
+        // });
+    }
+
+}
+
+export const clientsView = new ClientsView();
+
+
+

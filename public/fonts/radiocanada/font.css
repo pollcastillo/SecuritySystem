@@ -1,0 +1,81 @@
+@font-face {
+  font-family: "Radio Canada";
+  font-weight: 300;
+  font-style: normal;
+  src: url("./radio-canada-300.ttf");
+}
+
+@font-face {
+  font-family: "Radio Canada";
+  font-weight: 300;
+  font-style: italic;
+  src: url("./radio-canada-300italic.ttf");
+}
+
+@font-face {
+  font-family: "Radio Canada";
+  font-weight: 400;
+  font-style: normal;
+  src: url("./radio-canada-regular.ttf");
+}
+
+@font-face {
+  font-family: "Radio Canada";
+  font-weight: 400;
+  font-style: italic;
+  src: url("./radio-canada-italic.ttf");
+}
+
+@font-face {
+  font-family: "Radio Canada";
+  font-weight: 500;
+  font-style: normal;
+  src:
+    local("Radio Canada"),
+    url(radio-canada-500.ttf);
+}
+
+@font-face {
+  font-family: "Radio Canada";
+  font-weight: 500;
+  font-style: italic;
+  src:
+    local("Radio Canada"),
+    url(radio-canada-500italic.ttf);
+}
+
+@font-face {
+  font-family: "Radio Canada";
+  font-weight: 600;
+  font-style: normal;
+  src:
+    local("Radio Canada"),
+    url(radio-canada-600.ttf);
+}
+
+@font-face {
+  font-family: "Radio Canada";
+  font-weight: 600;
+  font-style: italic;
+  src:
+    local("Radio Canada"),
+    url(radio-canada-600italic.ttf);
+}
+
+@font-face {
+  font-family: "Radio Canada";
+  font-weight: 700;
+  font-style: normal;
+  src:
+    local("Radio Canada"),
+    url(radio-canada-700.ttf);
+}
+
+@font-face {
+  font-family: "Radio Canada";
+  font-weight: 700;
+  font-style: italic;
+  src:
+    local("Radio Canada"),
+    url(radio-canada-700italic.ttf);
+}
