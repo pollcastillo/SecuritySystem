@@ -18,3 +18,7 @@
 .button\:sidebar .ph {
     font-size: 20px;
 }
+
+.button {
+    display: flex;
+}

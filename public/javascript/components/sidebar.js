@@ -69,4 +69,4 @@ class Sidebar {
         element.innerHTML = "";
     }
 }
-export const siebar = new Sidebar();
+export const sidebar = new Sidebar();

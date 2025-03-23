@@ -76,4 +76,4 @@ class Sidebar {
     }
 }
 
-export const siebar = new Sidebar();
+export const sidebar = new Sidebar();

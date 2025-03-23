@@ -11,13 +11,14 @@ import getData from '../../API/GetData.js';
 import { translateStates } from '../../functions/TranslateStates.js';
 import { updateDate } from '../../functions/UpdateDate.js';
 import { checkUndefinedData } from '../../functions/CheckUndefinedData.js';
+import { clientsInformationView } from './ClientsInformationView.js';
 class ClientsView {
     constructor() {
         this.url = "../../data/User.json";
     }
     render() {
         return __awaiter(this, void 0, void 0, function* () {
-            const usersData = yield getData(this.url);
+            const clientsData = yield getData(this.url); //=>
             const content = document.getElementById("content");
             const clients = document.createElement("div");
             clients.id = "clients-content";
@@ -50,37 +51,62 @@ class ClientsView {
             </table>
         `;
             content.appendChild(clients);
-            this.renderClients("table-body", usersData); // render users into table
+            this.displayClients("table-body", clientsData); // first render
+            // FILTER DATA TO SEARCH 
+            const SEARCH = document.getElementById("search");
+            SEARCH.addEventListener("keyup", () => {
+                this.onSearch(SEARCH, clientsData, "table-body");
+            });
+            // Open the filter modal
             const filter = document.getElementById("filter");
-            filter === null || filter === void 0 ? void 0 : filter.addEventListener("click", () => {
+            filter.addEventListener("click", () => {
                 this.showFilterSelector();
             });
         });
     }
-    renderClients(tableID, data) {
+    displayClients(tableID, data) {
         return __awaiter(this, void 0, void 0, function* () {
             const table = document.getElementById(tableID);
+            table.innerHTML = "";
             for (let i = 0; i < (yield data.length); i++) {
-                const _USER = yield data[i];
+                const client = yield data[i]; //=> 
                 const row = document.createElement("tr");
-                row.id = yield _USER.id;
+                row.id = yield client.id; // Set the Client ID to the row
                 row.innerHTML = /*html*/ `
                 <td style="width: fit-content">${i + 1}</td>
-                <td class="text:noBreakline">${yield checkUndefinedData(_USER.firstName)} ${yield checkUndefinedData(_USER.lastName)}</td>
-                <td class="text:gray text:noBreakline">${updateDate(yield checkUndefinedData(_USER.createdDate))}</td>
-                <td class="text:gray text:limit">${yield checkUndefinedData(_USER.createdBy)}</td>
-                <td class="text:gray"><span class="table:state data:${yield _USER.state.name.toLowerCase()}">${translateStates(yield checkUndefinedData(_USER.state.name))}</span></td>
+                <td class="text:noBreakline">${yield checkUndefinedData(client.firstName)} ${yield checkUndefinedData(client.lastName)}</td>
+                <td class="text:gray text:noBreakline">${updateDate(yield checkUndefinedData(client.createdDate))}</td>
+                <td class="text:gray text:limit">${yield checkUndefinedData(client.createdBy)}</td>
+                <td class="text:gray"><span class="table:state data:${yield client.state.name.toLowerCase()}">${translateStates(yield checkUndefinedData(client.state.name))}</span></td>
                 <div class="table:button-group">
-                    <button data-id="${yield _USER.id}"><i class="ph ph-pencil"></i></button>
-                    <button data-id="${yield _USER.id}"><i class="ph ph-info"></i></button>
-                    <button data-id="${yield _USER.id}"><i class="ph ph-recycle text:red"></i></button>
+                    <button data-id="${yield client.id}" id="open-edit-client-information"><i class="ph ph-pencil"></i></button>
+                    <button data-id="${yield client.id}" id="open-client-information"><i class="ph ph-info"></i></button>
+                    <button data-id="${yield client.id}"><i class="ph ph-recycle text:red"></i></button>
                 </div>
             `;
-                console.log(i);
                 table === null || table === void 0 ? void 0 : table.appendChild(row);
             }
+            // Open Client Information View
+            const RawInformationButtons = document.querySelectorAll("#open-client-information");
+            RawInformationButtons.forEach((button) => {
+                button.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
+                    clientsInformationView.render(button.dataset.id, data);
+                }));
+            });
         });
     }
+    // Search
+    onSearch(input, clients, tableId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            document.getElementById(tableId).innerHTML = "";
+            // On Keyup search: firstName and lastName 
+            const filteredData = yield clients.filter((client) => `${client.firstName}${client.lastName}${client.createdBy}`
+                .toLowerCase().includes(`${input.value.trim().replace(/^\s+|\s+$/gm, '').toLowerCase()}`)); // FIXME
+            // Render the table with the data filtered
+            this.displayClients(tableId, filteredData);
+        });
+    }
+    // Search filter //TODO
     showFilterSelector() {
         return __awaiter(this, void 0, void 0, function* () {
             const content = document.getElementById("content");
@@ -105,12 +131,6 @@ class ClientsView {
             CLOSE_BUTTON.addEventListener("click", () => {
                 FILTER.remove();
             });
-            // // Cerrar el filtro al presionar "Esc"
-            // FILTER.addEventListener("keyup", (e) => {
-            //     if (e.key === "Escape") {
-            //         FILTER.remove();
-            //     }
-            // });
         });
     }
 }

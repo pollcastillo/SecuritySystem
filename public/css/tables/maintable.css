@@ -81,18 +81,19 @@ table .table\:button-group {
 .table\:state {
     font-size: 10px;
     text-transform: uppercase;
-    background-color: gray;
+    /* background-color: gray; */
     height: fit-content;
     padding: 2px 4px;
     border-radius: 8px;
 }
 
 .data\:enabled {
-    background-color: #1e4f91 !important;
-    color: white;
+    /* background-color: #1e4f91 !important; */
+    color: #4b96f8;
+    /* color: white; */
 }
 
 .data\:disabled {
-    background-color: #d12730;
-    color: white;
+    color: #d12730;
+    /* color: white; */
 }
