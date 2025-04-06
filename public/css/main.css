@@ -1,59 +1,14 @@
-@import url("variables/variables.css");
-@import url("./login/login.css");
-@import url("./inputs/text-input.css");
-@import url("./sidebar/sidebar.css");
-@import url("./buttons/lab.css");
-@import url("./tables/maintable.css");
-@import url("./inputs/search-input.css");
-@import url("./Content/content-container.css");
-@import url("./Content/content-header.css");
+@import url("utilities/variables.css");
+@import url("utilities/reset.css");
+@import url("./UIComponents/form/form-field.css");
+@import url("./UIComponents/form/form.css");
+@import url("./UIComponents/form/form-input.css");
 
-/* text utilities */
-@import url("./textUtilities/colors.css");
-@import url("./textUtilities/fix.css");
-
+/* Layout */
+@import url("./UIComponents/layout/layout.css");
 /* UI */
-@import url("./UI/ui-header.css");
-@import url("./UI/ui-filter-selector.css");
-@import url("./UI/ui-view-controls.css");
-@import url("./UI/ui-drawer.css");
+@import url("./UIComponents/sidebar/sidebar.css");
+@import url("./UIComponents/tables/main-table.css");
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body,
-input,
-button {
-  font-family: "Radio Canada";
-  font-size: 14px;
-  color: white;
-}
-
-#app {
-  background-color: black;
-  height: 100vh;
-  width: 100vw;
-  padding: 0 16px;
-  overflow: hidden;
-  touch-action: none;
-  -ms-touch-action: none;
-}
-
-button,
-input {
-  appearance: none;
-  outline: none;
-  background-color: transparent;
-  border: transparent;
-  outline: transparent;
-}
-
-button {
-  cursor: pointer;
-}
+/* Views */
+@import url("./views/login/login.css");

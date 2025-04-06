@@ -14,19 +14,21 @@ import { checkUndefinedData } from '../../functions/CheckUndefinedData.js';
 import { clientsInformationView } from './ClientsInformationView.js';
 class ClientsView {
     constructor() {
-        this.url = "../../data/User.json";
+        this.usersData = "../../data/User.json";
+        this.marcationData = "../../data/Marcation.json";
     }
     render() {
         return __awaiter(this, void 0, void 0, function* () {
-            const clientsData = yield getData(this.url); //=>
+            const clientsData = yield getData(this.usersData); //=>
             const content = document.getElementById("content");
             const clients = document.createElement("div");
             clients.id = "clients-content";
+            console.log(yield getData(this.marcationData));
             clients.innerHTML = /*html*/ `
-            <div class="content-header">
+            <div class="view-header">
                 <h1>Clients</h1>
 
-                <div class="ui:view-controls">
+                <div class="view-header_controls">
                     <button class="control-button" id="filter"><i class="ph ph-funnel"></i></button>
                     <div class="search">
                         <label for="search"><i class="ph ph-magnifying-glass"></i></label>
@@ -51,15 +53,17 @@ class ClientsView {
             </table>
         `;
             content.appendChild(clients);
-            this.displayClients("table-body", clientsData); // first render
+            // Display clients at render
+            this.displayClients("table-body", clientsData);
+            // BINDERS
             // FILTER DATA TO SEARCH 
-            const SEARCH = document.getElementById("search");
-            SEARCH.addEventListener("keyup", () => {
-                this.onSearch(SEARCH, clientsData, "table-body");
+            const searchBinder = document.getElementById("search");
+            searchBinder.addEventListener("keyup", () => {
+                this.onSearch(searchBinder, clientsData, "table-body");
             });
             // Open the filter modal
-            const filter = document.getElementById("filter");
-            filter.addEventListener("click", () => {
+            const filterBinder = document.getElementById("filter");
+            filterBinder.addEventListener("click", () => {
                 this.showFilterSelector();
             });
         });
@@ -78,11 +82,11 @@ class ClientsView {
                 <td class="text:gray text:noBreakline">${updateDate(yield checkUndefinedData(client.createdDate))}</td>
                 <td class="text:gray text:limit">${yield checkUndefinedData(client.createdBy)}</td>
                 <td class="text:gray"><span class="table:state data:${yield client.state.name.toLowerCase()}">${translateStates(yield checkUndefinedData(client.state.name))}</span></td>
-                <div class="table:button-group">
+                <td class="table-button_group">
                     <button data-id="${yield client.id}" id="open-edit-client-information"><i class="ph ph-pencil"></i></button>
                     <button data-id="${yield client.id}" id="open-client-information"><i class="ph ph-info"></i></button>
-                    <button data-id="${yield client.id}"><i class="ph ph-recycle text:red"></i></button>
-                </div>
+                    <button data-id="${yield client.id}"><i class="ph ph-recycle"></i></button>
+                </td>
             `;
                 table === null || table === void 0 ? void 0 : table.appendChild(row);
             }

@@ -5,19 +5,22 @@ import { checkUndefinedData } from '../../functions/CheckUndefinedData.js';
 import { clientsInformationView } from './ClientsInformationView.js';
 
 class ClientsView {
-    private url: string = "../../data/User.json";
+    private usersData: string = "../../data/User.json";
+    private marcationData: string = "../../data/Marcation.json";
 
     public async render() {
-        const clientsData: any = await getData(this.url); //=>
+        const clientsData: any = await getData(this.usersData); //=>
         const content: HTMLElement = document.getElementById("content")!;
         const clients: HTMLElement = document.createElement("div");
         clients.id = "clients-content";
 
+        console.log(await getData(this.marcationData));
+
         clients.innerHTML = /*html*/`
-            <div class="content-header">
+            <div class="view-header">
                 <h1>Clients</h1>
 
-                <div class="ui:view-controls">
+                <div class="view-header_controls">
                     <button class="control-button" id="filter"><i class="ph ph-funnel"></i></button>
                     <div class="search">
                         <label for="search"><i class="ph ph-magnifying-glass"></i></label>
@@ -43,17 +46,20 @@ class ClientsView {
         `;
 
         content.appendChild(clients);
-        this.displayClients("table-body", clientsData); // first render
 
+        // Display clients at render
+        this.displayClients("table-body", clientsData);
+
+        // BINDERS
         // FILTER DATA TO SEARCH 
-        const SEARCH: HTMLInputElement = document.getElementById("search")! as HTMLInputElement;
-        SEARCH.addEventListener("keyup", () => {
-            this.onSearch(SEARCH, clientsData, "table-body");
+        const searchBinder: HTMLInputElement = document.getElementById("search")! as HTMLInputElement;
+        searchBinder.addEventListener("keyup", () => {
+            this.onSearch(searchBinder, clientsData, "table-body");
         });
 
         // Open the filter modal
-        const filter: HTMLButtonElement = document.getElementById("filter")! as HTMLButtonElement;
-        filter.addEventListener("click", (): void => {
+        const filterBinder: HTMLButtonElement = document.getElementById("filter")! as HTMLButtonElement;
+        filterBinder.addEventListener("click", (): void => {
             this.showFilterSelector();
         });
 
@@ -75,11 +81,11 @@ class ClientsView {
                 <td class="text:gray text:noBreakline">${updateDate(await checkUndefinedData(client.createdDate))}</td>
                 <td class="text:gray text:limit">${await checkUndefinedData(client.createdBy)}</td>
                 <td class="text:gray"><span class="table:state data:${await client.state.name.toLowerCase()}">${translateStates(await checkUndefinedData(client.state.name))}</span></td>
-                <div class="table:button-group">
+                <td class="table-button_group">
                     <button data-id="${await client.id}" id="open-edit-client-information"><i class="ph ph-pencil"></i></button>
                     <button data-id="${await client.id}" id="open-client-information"><i class="ph ph-info"></i></button>
-                    <button data-id="${await client.id}"><i class="ph ph-recycle text:red"></i></button>
-                </div>
+                    <button data-id="${await client.id}"><i class="ph ph-recycle"></i></button>
+                </td>
             `;
 
             table?.appendChild(row);

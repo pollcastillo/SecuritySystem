@@ -8,10 +8,32 @@
   <link rel="stylesheet" href="./public/fonts/radiocanada/font.css">
   <link rel="stylesheet" href="./public/css/main.css">
   <link rel="stylesheet" href="./public/icons/Fonts/regular/style.css">
+  <link rel="stylesheet" href="./public/icons/Fonts/bold/style.css">
 </head>
 
+<style>
+  .limit-note-content {
+    max-width: 300px !important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .table-element-fit {
+    max-width: fit-content !important;
+    min-width: fit-content !important;
+    width: fit-content !important;
+  }
+
+  .table-date-fit {
+    max-width: 100px !important;
+    min-width: 100px !important;
+    width: 100px !important;
+  }
+</style>
+
 <body>
-  <div id="app">
+  <div id="app" class="app">
   </div>
 
   <script src="./public/javascript/main.js" type="module"></script>

@@ -1,0 +1,22 @@
+.input,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"] {
+    height: 42px;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: var(--border-solid) var(--border-variant-1);
+    background-color: var(--gray-950);
+    color: var(--gray-50);
+}
+
+.input:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus {
+    outline: none;
+    border-color: var(--gray-200);
+    color: var(--gray-200);
+}

@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const usersUrl = "../../data/User.json";
+const marcationData = "../../data/Marcation.json";
 export default function getData(url) {
     return __awaiter(this, void 0, void 0, function* () {
         const data = yield fetch(url)

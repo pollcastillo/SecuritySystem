@@ -2,6 +2,7 @@ import { layout } from '../Layout/Layout.js';
 import { clientsView } from '../views/ClientsView/ClientsView.js';
 import { dashboardView } from '../views/DashboardView/DashboardView.js';
 import { loginView } from '../views/LoginView/LoginView.js';
+import { notesView } from '../views/NotesView/NotesView.js';
 
 
 class Auth {
@@ -20,7 +21,7 @@ class Auth {
             // writing necessary elements to render the interface
             layout.draw();
             // dashboardView.render();
-            clientsView.render();
+            notesView.render();
         }
     }
 

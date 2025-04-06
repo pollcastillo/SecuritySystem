@@ -10,10 +10,12 @@ class Layout {
         contentHeader.id = "header";
         const sidebarWrapper = document.createElement("div");
         sidebarWrapper.id = "sidebar";
+        sidebarWrapper.classList.add("sidebar-wrapper");
         const drawer = document.createElement("div");
         drawer.id = "drawer";
         const content = document.createElement("div");
         content.id = "content";
+        content.classList.add("content");
         const contentContainer = document.createElement("div");
         contentContainer.id = "content-container";
         contentContainer.classList.add("content-container");
