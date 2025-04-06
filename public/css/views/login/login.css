@@ -1,0 +1,81 @@
+.login-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 350px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-right: var(--border-solid) var(--border-variant-1);
+  color: white;
+  padding: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 2;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.login-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--t5);
+  width: 100%;
+  text-transform: uppercase;
+}
+
+.login-header span {
+  font-size: var(--tf);
+}
+
+.form-title {
+  font-size: var(--t5);
+  font-weight: 600;
+  margin-bottom: 16px;
+  line-height: 25px;
+}
+
+.link-hire_service {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gray-400);
+  font-size: var(--tp);
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+.link-hire_service:hover {
+  color: var(--gray-200);
+}
+
+.link-hire_service .ph-arrow-right {
+  font-size: calc(var(--t6) - 4px);
+}
+
+.login-background {
+  background-image: url("../../../pictures/danist-soh-dqXiw7nCb9Q-unsplash.jpg");
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+  background-size: cover;
+}
+
+.btn-login {
+  background-color: var(--gray-200);
+  color: var(--gray-900);
+  font-size: var(--tp);
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}

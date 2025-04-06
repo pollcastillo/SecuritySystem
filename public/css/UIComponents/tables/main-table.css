@@ -1,0 +1,107 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+thead,
+tbody {
+    width: 100%;
+    max-width: fit-content;
+}
+
+table tr {
+    width: 100%;
+}
+
+td,
+th {
+    text-align: left;
+    padding: 8px;
+}
+
+thead {
+    background-color: transparent;
+    border-top-left-radius: 4px;
+    overflow: hidden;
+}
+
+thead tr th {
+    background-color: var(--gray-900);
+    border-bottom: var(--border-solid) var(--gray-800);
+}
+
+tr {
+    border-bottom: var(--border-solid) var(--gray-900);
+}
+
+tbody tr:nth-child(odd) {
+    background-color: var(--gray-950);
+}
+
+table .ph-warning {
+    color: var(--yellow-300);
+}
+
+.table-button_group {
+    display: flex;
+    gap: 8px;
+    width: fit-content;
+    height: 100%;
+}
+
+.table-button_group button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    border: none;
+    background-color: transparent;
+    padding: 4px;
+}
+
+.table-button_group button:first-child {
+    color: var(--white);
+}
+
+.table-button_group button:nth-child(2) {
+    color: var(--blue-200);
+}
+
+.table-button_group button:nth-child(3) {
+    color: var(--red-400);
+}
+
+@media (prefers-color-scheme: light) {
+    table thead tr th {
+        background-color: var(--gray-200);
+        border-color: var(--gray-400);
+    }
+
+    tbody tr {
+        border-color: var(--gray-100);
+        background: var(--white);
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: var(--gray-50);
+        border-color: var(--gray-100);
+    }
+
+    tr {
+        border-color: var(--gray-100);
+    }
+
+    table .ph-warning {
+        color: var(--red-500);
+    }
+
+    .table-button_group button:first-child {
+        color: var(--black);
+    }
+
+    .table-button_group button:nth-child(2) {
+        color: var(--blue-400);
+    }
+}

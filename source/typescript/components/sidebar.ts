@@ -1,5 +1,6 @@
 import { clientsView } from '../views/ClientsView/ClientsView.js';
 import { dashboardView } from '../views/DashboardView/DashboardView.js';
+import { notesView } from '../views/NotesView/NotesView.js';
 
 class Sidebar {
     public render() {
@@ -10,47 +11,47 @@ class Sidebar {
         content.classList.add("sidebar");
 
         content.innerHTML = /*html*/`
-                <button class="button:sidebar" id="dashboard">
+                <button class="sidebar-item" id="dashboard">
                     <i class="ph ph-sidebar-simple"></i>
                     Dashboard
                 </button>
 
-                <button class="button:sidebar" id="clients">
+                <button class="sidebar-item" id="clients">
                     <i class="ph ph-city"></i>
                     Clients
                 </button>
                 
-                <button class="button:sidebar">
+                <button class="sidebar-item">
                     <i class="ph ph-users"></i>
                     Employees
                 </button>
 
-                <button class="button:sidebar">
+                <button class="sidebar-item">
                     <i class="ph ph-shield-star"></i>
                     Guards
                 </button>
 
-                <button class="button:sidebar">
+                <button class="sidebar-item">
                     <i class="ph ph-asterisk text:red"></i>
                     emergency
                 </button>
 
-                <button class="button:sidebar">
+                <button class="sidebar-item" id="notes">
                     <i class="ph ph-note"></i>
                     Notes
                 </button>
 
-                <button class="button:sidebar">
+                <button class="sidebar-item">
                     <i class="ph ph-notification"></i>
                     Notifications
                 </button>
 
-                <button class="button:sidebar">
+                <button class="sidebar-item">
                     <i class="ph ph-stack"></i>
                     Services
                 </button>
 
-                <button class="button:sidebar">
+                <button class="sidebar-item">
                     <i class="ph ph-laptop"></i>
                     Logins
                 </button>
@@ -60,20 +61,23 @@ class Sidebar {
 
         const dashboard: HTMLElement = document.getElementById("dashboard")! as HTMLElement;
         dashboard?.addEventListener("click", () => {
-            this.clearContent(appContent);
-            dashboardView.render();
+            this.switchContent(dashboardView.render(), appContent);
         });
 
         const clients: HTMLElement = document.getElementById("clients")! as HTMLElement;
         clients?.addEventListener("click", () => {
-            this.clearContent(appContent);
-            clientsView.render();
+            this.switchContent(clientsView.render(), appContent);
+        });
+
+        const notes: HTMLElement = document.getElementById("notes")! as HTMLElement;
+        notes?.addEventListener("click", () => {
+            this.switchContent(notesView.render(), appContent);
         });
     }
 
-    private clearContent(element: HTMLElement): void {
-        element.innerHTML = "";
+    private switchContent(exec: any, content: HTMLElement): void {
+        content.innerHTML = "";
     }
 }
 
-export const siebar = new Sidebar();
+export const sidebar = new Sidebar();

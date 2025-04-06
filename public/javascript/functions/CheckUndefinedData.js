@@ -12,6 +12,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 */
 export function checkUndefinedData(data) {
     return __awaiter(this, void 0, void 0, function* () {
-        return (yield data) === undefined ? '<span class="ph ph-warning"></span>' : data;
+        return (yield data) === undefined ? '<span class="ph ph-warning text:yellow"></span>' : data;
     });
 }

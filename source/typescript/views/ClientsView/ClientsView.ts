@@ -2,20 +2,25 @@ import getData from '../../API/GetData.js';
 import { translateStates } from '../../functions/TranslateStates.js';
 import { updateDate } from '../../functions/UpdateDate.js';
 import { checkUndefinedData } from '../../functions/CheckUndefinedData.js';
+import { clientsInformationView } from './ClientsInformationView.js';
 
 class ClientsView {
-    private url: string = "../../data/User.json";
+    private usersData: string = "../../data/User.json";
+    private marcationData: string = "../../data/Marcation.json";
 
     public async render() {
-        const usersData: any = await getData(this.url);
+        const clientsData: any = await getData(this.usersData); //=>
         const content: HTMLElement = document.getElementById("content")!;
         const clients: HTMLElement = document.createElement("div");
         clients.id = "clients-content";
+
+        console.log(await getData(this.marcationData));
+
         clients.innerHTML = /*html*/`
-            <div class="content-header">
+            <div class="view-header">
                 <h1>Clients</h1>
 
-                <div class="ui:view-controls">
+                <div class="view-header_controls">
                     <button class="control-button" id="filter"><i class="ph ph-funnel"></i></button>
                     <div class="search">
                         <label for="search"><i class="ph ph-magnifying-glass"></i></label>
@@ -42,42 +47,71 @@ class ClientsView {
 
         content.appendChild(clients);
 
-        this.renderClients("table-body", usersData); // render users into table
+        // Display clients at render
+        this.displayClients("table-body", clientsData);
 
-        const filter = document.getElementById("filter");
-        filter?.addEventListener("click", (): void => {
+        // BINDERS
+        // FILTER DATA TO SEARCH 
+        const searchBinder: HTMLInputElement = document.getElementById("search")! as HTMLInputElement;
+        searchBinder.addEventListener("keyup", () => {
+            this.onSearch(searchBinder, clientsData, "table-body");
+        });
+
+        // Open the filter modal
+        const filterBinder: HTMLButtonElement = document.getElementById("filter")! as HTMLButtonElement;
+        filterBinder.addEventListener("click", (): void => {
             this.showFilterSelector();
         });
+
     }
 
-    private async renderClients(tableID: string, data: any) {
-        const table = document.getElementById(tableID);
+    private async displayClients(tableID: string, data: any) {
+        const table = document.getElementById(tableID)!;
+        table.innerHTML = "";
 
         for (let i = 0; i < await data.length; i++) {
-            const _USER = await data[i];
+            const client = await data[i]; //=> 
             const row: HTMLTableRowElement = document.createElement("tr")! as HTMLTableRowElement;
 
-            row.id = await _USER.id;
+            row.id = await client.id; // Set the Client ID to the row
 
             row.innerHTML = /*html*/`
                 <td style="width: fit-content">${i + 1}</td>
-                <td class="text:noBreakline">${await checkUndefinedData(_USER.firstName)} ${await checkUndefinedData(_USER.lastName)}</td>
-                <td class="text:gray text:noBreakline">${updateDate(await checkUndefinedData(_USER.createdDate))}</td>
-                <td class="text:gray text:limit">${await checkUndefinedData(_USER.createdBy)}</td>
-                <td class="text:gray"><span class="table:state data:${await _USER.state.name.toLowerCase()}">${translateStates(await checkUndefinedData(_USER.state.name))}</span></td>
-                <div class="table:button-group">
-                    <button data-id="${await _USER.id}"><i class="ph ph-pencil"></i></button>
-                    <button data-id="${await _USER.id}"><i class="ph ph-info"></i></button>
-                    <button data-id="${await _USER.id}"><i class="ph ph-recycle text:red"></i></button>
-                </div>
+                <td class="text:noBreakline">${await checkUndefinedData(client.firstName)} ${await checkUndefinedData(client.lastName)}</td>
+                <td class="text:gray text:noBreakline">${updateDate(await checkUndefinedData(client.createdDate))}</td>
+                <td class="text:gray text:limit">${await checkUndefinedData(client.createdBy)}</td>
+                <td class="text:gray"><span class="table:state data:${await client.state.name.toLowerCase()}">${translateStates(await checkUndefinedData(client.state.name))}</span></td>
+                <td class="table-button_group">
+                    <button data-id="${await client.id}" id="open-edit-client-information"><i class="ph ph-pencil"></i></button>
+                    <button data-id="${await client.id}" id="open-client-information"><i class="ph ph-info"></i></button>
+                    <button data-id="${await client.id}"><i class="ph ph-recycle"></i></button>
+                </td>
             `;
-
-            console.log(i);
 
             table?.appendChild(row);
         }
+
+        // Open Client Information View
+        const RawInformationButtons = document.querySelectorAll("#open-client-information");
+        RawInformationButtons.forEach((button: any) => {
+            button.addEventListener("click", async () => {
+                clientsInformationView.render(button.dataset.id, data);
+            });
+        });
     }
 
+    // Search
+    private async onSearch(input: HTMLInputElement, clients: any, tableId: string) {
+        document.getElementById(tableId)!.innerHTML = "";
+        // On Keyup search: firstName and lastName 
+        const filteredData = await clients.filter((client: any) => `${client.firstName}${client.lastName}${client.createdBy}`
+            .toLowerCase().includes(`${input.value.trim().replace(/^\s+|\s+$/gm, '').toLowerCase()}`)); // FIXME
+
+        // Render the table with the data filtered
+        this.displayClients(tableId, filteredData);
+    }
+
+    // Search filter //TODO
     private async showFilterSelector() {
         const content = document.getElementById("content");
         const filter = document.createElement("div");
@@ -106,13 +140,6 @@ class ClientsView {
         CLOSE_BUTTON.addEventListener("click", (): void => {
             FILTER.remove();
         });
-
-        // // Cerrar el filtro al presionar "Esc"
-        // FILTER.addEventListener("keyup", (e) => {
-        //     if (e.key === "Escape") {
-        //         FILTER.remove();
-        //     }
-        // });
     }
 
 }
