@@ -26,7 +26,7 @@ class LoginView {
                     
                     <div class="form-field">
                         <label for="password">Password</label>
-                        <input type="text" id="password" name="password" placeholder="••••••••••••••••••••" required>
+                        <input type="password" id="password" name="password" placeholder="••••••••••••••••••••" required>
                     </div>
 
                     <input type="submit" value="Login" id="submit" class="btn-login">

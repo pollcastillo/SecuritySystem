@@ -1,0 +1,32 @@
+.drawer {
+    padding: 20px;
+    background-color: rgba(7, 7, 7, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px;
+    max-width: 400px;
+    height: 100%;
+    z-index: 99;
+    border-left: var(--border-solid) var(--gray-900);
+}
+
+.drawer-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+.note-information {
+    height: 100%;
+    width: 100%;
+}
+
+.note-information * {
+    text-overflow: ellipsis !important;
+}

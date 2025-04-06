@@ -31,8 +31,8 @@
 }
 
 .sidebar-item:hover {
-    background-color: var(--gray-400);
-    color: var(--black);
+    background-color: var(--gray-900);
+    color: var(--white);
 }
 
 @media (prefers-color-scheme: light) {

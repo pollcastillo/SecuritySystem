@@ -8,7 +8,7 @@ class PreviewNotesView {
         const notes = await data.filter((note: any) => note.id === noteID);
         const note = notes[0];
         const InformationComponent = document.createElement("div");
-        InformationComponent.classList.add("client-information-container");
+        InformationComponent.classList.add("drawer-content");
         InformationComponent.id = note.id;
 
         console.log(data);
@@ -16,7 +16,7 @@ class PreviewNotesView {
         drawer.innerHTML = "";
 
         InformationComponent.innerHTML = /*html*/`
-            <div class="note-information">
+            <div class="drawer-information">
                 <button id="close" class="close"><i class="ph ph-x"></i></button>
                 <h1>${await checkUndefinedData(note.title)}</h1>
                 
