@@ -15,24 +15,25 @@ class PreviewNotesView {
             const notes = yield data.filter((note) => note.id === noteID);
             const note = notes[0];
             const InformationComponent = document.createElement("div");
-            InformationComponent.classList.add("client-information-container");
+            InformationComponent.classList.add("drawer-content");
             InformationComponent.id = note.id;
             console.log(data);
             drawer.innerHTML = "";
             InformationComponent.innerHTML = /*html*/ `
-            <div class="note-information">
+            <div class="drawer-content">
                 <button id="close" class="close"><i class="ph ph-x"></i></button>
                 <h1>${yield checkUndefinedData(note.title)}</h1>
                 
                 <p>${yield checkUndefinedData(note.content)}</p>
             </div>
 
-            <div class="controls">
+            <div class="drawer-controls">
                 <button id="edit-client">Edit</button>
                 <button id="delete-client">Delete</button>
             </div>
         `;
             console.log(notes[0].title);
+            drawer.classList.add("isActive");
             drawer.classList.add("drawer");
             drawer.appendChild(InformationComponent);
             const close = document.getElementById("close");

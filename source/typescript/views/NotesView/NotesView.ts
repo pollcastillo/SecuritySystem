@@ -79,8 +79,8 @@ class NotesView {
                 <td class="px-6 py-4 truncate overflow-hidden bg-stone-900">${await checkUndefinedData(notes.user.firstName)} ${await checkUndefinedData(notes.user.lastName)}</td>
                 <td class="px-6 py-4">${await notes.content.length}</td>
                 <td class="table-button_group">
-                    <button class="hover:bg-stone-800 transition-all px-1 py-1 rounded-sm cursor-pointer flex items center justify-center" data-id="${await notes.id}" id="open-client-information"><i class="ph ph-info text-sky-300"></i></button>
-                    <button class="hover:bg-stone-800 transition-all px-1 py-1 rounded-sm cursor-pointer flex items center justify-center" data-id="${await notes.id}"><i class="ph ph-recycle text-red-400"></i></button>
+                    <button data-id="${await notes.id}" id="open-client-information"><i class="ph ph-info"></i></button>
+                    <button data-id="${await notes.id}"><i class="ph ph-recycle"></i></button>
                 </td>
             `;
 

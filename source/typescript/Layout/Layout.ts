@@ -14,6 +14,7 @@ class Layout {
 
         const drawer = document.createElement("div")!;
         drawer.id = "drawer";
+        drawer.classList.add("drawer");
 
 
         const content = document.createElement("div");

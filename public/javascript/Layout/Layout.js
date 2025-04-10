@@ -13,6 +13,7 @@ class Layout {
         sidebarWrapper.classList.add("sidebar-wrapper");
         const drawer = document.createElement("div");
         drawer.id = "drawer";
+        drawer.classList.add("drawer");
         const content = document.createElement("div");
         content.id = "content";
         content.classList.add("content");

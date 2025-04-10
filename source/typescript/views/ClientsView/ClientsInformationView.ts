@@ -16,7 +16,7 @@ class ClientsInformationView {
         drawer.innerHTML = "";
 
         InformationComponent.innerHTML = /*html*/`
-            <div class="client-information">
+            <div class="drawer-content">
                 <button id="close" class="close"><i class="ph ph-x"></i></button>
                 <h1>${await checkUndefinedData(client.firstName)} ${await checkUndefinedData(client.lastName)}</h1>
                 
@@ -39,7 +39,7 @@ class ClientsInformationView {
         `;
 
         console.log(clients[0].firstName);
-        drawer.classList.add("drawer");
+        drawer.classList.add("isActive");
 
         drawer.appendChild(InformationComponent);
 

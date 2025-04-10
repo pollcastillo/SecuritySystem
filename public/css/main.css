@@ -9,6 +9,8 @@
 /* UI */
 @import url("./UIComponents/sidebar/sidebar.css");
 @import url("./UIComponents/tables/main-table.css");
+@import url("./UIComponents/window/window-floater.css");
+@import url("./UIComponents/drawer/drawer.css");
 
 /* Views */
 @import url("./views/login/login.css");

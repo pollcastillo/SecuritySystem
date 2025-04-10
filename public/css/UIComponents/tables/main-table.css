@@ -65,11 +65,15 @@ table .ph-warning {
     color: var(--white);
 }
 
-.table-button_group button:nth-child(2) {
+.table-button_group button .ph-info {
     color: var(--blue-200);
 }
 
-.table-button_group button:nth-child(3) {
+.table-button_group button .ph-warning {
+    color: var(--yellow-400);
+}
+
+.table-button_group button .ph-recycle {
     color: var(--red-400);
 }
 
@@ -101,7 +105,11 @@ table .ph-warning {
         color: var(--black);
     }
 
-    .table-button_group button:nth-child(2) {
+    .table-button_group button .ph-info {
         color: var(--blue-400);
+    }
+
+    .table-button_group button .ph-recycle {
+        color: var(--red-300);
     }
 }
