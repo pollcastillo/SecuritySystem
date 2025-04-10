@@ -20,19 +20,20 @@ class PreviewNotesView {
             console.log(data);
             drawer.innerHTML = "";
             InformationComponent.innerHTML = /*html*/ `
-            <div class="drawer-information">
+            <div class="drawer-content">
                 <button id="close" class="close"><i class="ph ph-x"></i></button>
                 <h1>${yield checkUndefinedData(note.title)}</h1>
                 
                 <p>${yield checkUndefinedData(note.content)}</p>
             </div>
 
-            <div class="controls">
+            <div class="drawer-controls">
                 <button id="edit-client">Edit</button>
                 <button id="delete-client">Delete</button>
             </div>
         `;
             console.log(notes[0].title);
+            drawer.classList.add("isActive");
             drawer.classList.add("drawer");
             drawer.appendChild(InformationComponent);
             const close = document.getElementById("close");
