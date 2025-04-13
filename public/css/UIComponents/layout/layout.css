@@ -6,7 +6,7 @@
     overflow: hidden;
     flex-direction: column;
     color: var(--white);
-    background-color: var(--black);
+    background-color: var(--neutral-950);
 }
 
 .header {
@@ -90,7 +90,7 @@
     }
 
     .header {
-        border-color: var(--gray-100);
+        border-color: var(--neutral-100);
     }
 
     .header-button_group button {

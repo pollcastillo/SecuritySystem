@@ -1,4 +1,5 @@
 import { checkUndefinedData } from '../../functions/CheckUndefinedData.js';
+import { translateStates } from '../../functions/TranslateStates.js';
 import { updateDate } from '../../functions/UpdateDate.js';
 
 class ClientsInformationView {
@@ -8,7 +9,7 @@ class ClientsInformationView {
         const clients = await data.filter((client: any) => client.id === clientID);
         const client = clients[0];
         const InformationComponent = document.createElement("div");
-        InformationComponent.classList.add("client-information-container");
+        InformationComponent.classList.add("drawer-content");
         InformationComponent.id = client.id;
 
         console.log(data);
@@ -16,9 +17,21 @@ class ClientsInformationView {
         drawer.innerHTML = "";
 
         InformationComponent.innerHTML = /*html*/`
-            <div class="drawer-content">
+            <div class="drawer-information">
                 <button id="close" class="close"><i class="ph ph-x"></i></button>
                 <h1>${await checkUndefinedData(client.firstName)} ${await checkUndefinedData(client.lastName)}</h1>
+
+                <div class="drawer-data-information">
+                    <div class="info">
+                        <span class="info-title">Status</span>
+                        <span class="info-badge">${await translateStates(await checkUndefinedData(client.state.name))}</span>
+                    </div>
+                    
+                    <div class="info">
+                        <span class="info-title">Phone Number</span>
+                        <span class="info-content">${await client.phone}</span>
+                    </div>
+                </div>
                 
                 <p><i class="ph ph-users"></i> ${await checkUndefinedData(client.createdBy)}</p>
                 <p><i class="ph ph-phone"></i> ${await checkUndefinedData(client.phone)}</p>
@@ -32,7 +45,7 @@ class ClientsInformationView {
                 <div id="customer"></div>
             </div>
 
-            <div class="controls">
+            <div class="drawer-controls">
                 <button id="edit-client">Edit</button>
                 <button id="delete-client">Delete</button>
             </div>
@@ -40,6 +53,7 @@ class ClientsInformationView {
 
         console.log(clients[0].firstName);
         drawer.classList.add("isActive");
+        drawer.classList.add("drawer");
 
         drawer.appendChild(InformationComponent);
 
