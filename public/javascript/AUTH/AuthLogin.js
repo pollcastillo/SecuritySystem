@@ -1,6 +1,6 @@
 import { layout } from '../Layout/Layout.js';
+import { clientsView } from '../views/ClientsView/ClientsView.js';
 import { loginView } from '../views/LoginView/LoginView.js';
-import { notesView } from '../views/NotesView/NotesView.js';
 class Auth {
     constructor() {
         this.app = document.getElementById("app");
@@ -19,7 +19,8 @@ class Auth {
             // writing necessary elements to render the interface
             layout.draw();
             // dashboardView.render();
-            notesView.render();
+            // notesView.render();
+            clientsView.render();
         }
     }
     authorize() {

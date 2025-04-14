@@ -1,7 +1,6 @@
 table {
     border-collapse: collapse;
     width: 100%;
-    border-radius: 8px;
     overflow: hidden;
 }
 
@@ -21,23 +20,23 @@ th {
     padding: 8px 16px;
 }
 
-thead {
-    background-color: transparent;
-    border-top-left-radius: 4px;
-    overflow: hidden;
+
+
+/* HEADER STYLES */
+.table-section {
+    background-color: var(--neutral-900);
 }
 
-thead tr th {
-    background-color: var(--red-900);
-    border-bottom: var(--border-solid) var(--red-800);
+.table-section.section-disabled {
+    background-color: var(--red-950);
+}
+
+.table-section.section-enabled {
+    background-color: var(--green-950);
 }
 
 tr {
     border-bottom: var(--border-solid) var(--neutral-900);
-}
-
-tbody tr:nth-child(odd) {
-    background-color: var(--neutral-900);
 }
 
 table .ph-warning {
@@ -78,19 +77,9 @@ table .ph-warning {
 }
 
 @media (prefers-color-scheme: light) {
-    table thead tr th {
-        background-color: var(--neutral-200);
-        border-color: var(--neutral-400);
-    }
-
     tbody tr {
         border-color: var(--neutral-100);
         background: var(--white);
-    }
-
-    tbody tr:nth-child(odd) {
-        background-color: var(--neutral-50);
-        border-color: var(--neutral-100);
     }
 
     tr {
@@ -98,7 +87,7 @@ table .ph-warning {
     }
 
     table .ph-warning {
-        color: var(--red-500);
+        color: var(--yellow-500);
     }
 
     .table-button_group button:first-child {
@@ -106,10 +95,22 @@ table .ph-warning {
     }
 
     .table-button_group button .ph-info {
-        color: var(--blue-400);
+        color: var(--blue-500);
     }
 
     .table-button_group button .ph-recycle {
-        color: var(--red-300);
+        color: var(--red-500);
+    }
+
+    .table-section.section-disabled {
+        background-color: var(--red-50);
+        border-top: var(--border-solid) var(--red-100);
+        border-bottom: var(--border-solid) var(--red-100);
+    }
+
+    .table-section.section-enabled {
+        background-color: var(--green-50);
+        border-top: var(--border-solid) var(--green-100);
+        border-bottom: var(--border-solid) var(--green-100);
     }
 }

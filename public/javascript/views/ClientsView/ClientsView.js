@@ -47,19 +47,25 @@ class ClientsView {
                         <th class="text:noBreakline">Status</th>
                         <th></th>
                     </tr>
+                    <tr>
+                        <th colspan="6" class="table-section section-enabled">Active</th>
+                    </tr>
                 </thead>
 
-                <tbody id="table-body"></tbody>
+                <tbody id="table-enabled-items"></tbody>
+                <th colspan="6" class="table-section section-disabled">Disabled</th>
+                <tbody id="table-disabled-items"></tbody>
             </table>
         `;
             content.appendChild(clients);
             // Display clients at render
-            this.displayClients("table-body", clientsData);
+            this.displayClients("table-enabled-items", clientsData, "Enabled");
+            this.displayClients("table-disabled-items", clientsData, "Disabled");
             // BINDERS
             // FILTER DATA TO SEARCH 
             const searchBinder = document.getElementById("search");
             searchBinder.addEventListener("keyup", () => {
-                this.onSearch(searchBinder, clientsData, "table-body");
+                this.onSearch(searchBinder, clientsData);
             });
             // Open the filter modal
             const filterBinder = document.getElementById("filter");
@@ -68,16 +74,17 @@ class ClientsView {
             });
         });
     }
-    displayClients(tableID, data) {
+    displayClients(tableID, data, state) {
         return __awaiter(this, void 0, void 0, function* () {
             const table = document.getElementById(tableID);
-            table.innerHTML = "";
-            for (let i = 0; i < (yield data.length); i++) {
-                const client = yield data[i]; //=> 
+            table.innerHTML = ""; // clear table content
+            const DATA = data.filter((d) => `${d.state.name}`.includes(state));
+            for (let i = 0; i < DATA.length; i++) {
+                const client = yield DATA[i];
                 const row = document.createElement("tr");
-                row.id = yield client.id; // Set the Client ID to the row
+                let index = 1 + i;
                 row.innerHTML = /*html*/ `
-                <td style="width: fit-content">${i + 1}</td>
+                <td style="width: fit-content">${index}</td>
                 <td class="text:noBreakline">${yield checkUndefinedData(client.firstName)} ${yield checkUndefinedData(client.lastName)}</td>
                 <td class="text:gray text:noBreakline">${updateDate(yield checkUndefinedData(client.createdDate))}</td>
                 <td class="text:gray text:limit">${yield checkUndefinedData(client.createdBy)}</td>
@@ -88,26 +95,25 @@ class ClientsView {
                     <button data-id="${yield client.id}"><i class="ph ph-recycle"></i></button>
                 </td>
             `;
-                table === null || table === void 0 ? void 0 : table.appendChild(row);
+                table.appendChild(row);
+                const RawInformationButtons = document.querySelectorAll("#open-client-information");
+                RawInformationButtons.forEach((button) => {
+                    button.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
+                        clientsInformationView.render(button.dataset.id, data);
+                    }));
+                });
             }
-            // Open Client Information View
-            const RawInformationButtons = document.querySelectorAll("#open-client-information");
-            RawInformationButtons.forEach((button) => {
-                button.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
-                    clientsInformationView.render(button.dataset.id, data);
-                }));
-            });
         });
     }
     // Search
-    onSearch(input, clients, tableId) {
+    onSearch(input, clients) {
         return __awaiter(this, void 0, void 0, function* () {
-            document.getElementById(tableId).innerHTML = "";
             // On Keyup search: firstName and lastName 
-            const filteredData = yield clients.filter((client) => `${client.firstName}${client.lastName}${client.createdBy}`
+            const filteredData = yield clients.filter((client) => `${client.firstName} ${client.lastName} ${client.createdBy}`
                 .toLowerCase().includes(`${input.value.trim().replace(/^\s+|\s+$/gm, '').toLowerCase()}`)); // FIXME
             // Render the table with the data filtered
-            this.displayClients(tableId, filteredData);
+            this.displayClients("table-enabled-items", filteredData, "Enabled");
+            this.displayClients("table-disabled-items", filteredData, "Disabled");
         });
     }
     // Search filter //TODO

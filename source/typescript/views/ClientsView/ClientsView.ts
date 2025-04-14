@@ -39,22 +39,28 @@ class ClientsView {
                         <th class="text:noBreakline">Status</th>
                         <th></th>
                     </tr>
+                    <tr>
+                        <th colspan="6" class="table-section section-enabled">Active</th>
+                    </tr>
                 </thead>
 
-                <tbody id="table-body"></tbody>
+                <tbody id="table-enabled-items"></tbody>
+                <th colspan="6" class="table-section section-disabled">Disabled</th>
+                <tbody id="table-disabled-items"></tbody>
             </table>
         `;
 
         content.appendChild(clients);
 
         // Display clients at render
-        this.displayClients("table-body", clientsData);
+        this.displayClients("table-enabled-items", clientsData, "Enabled");
+        this.displayClients("table-disabled-items", clientsData, "Disabled");
 
         // BINDERS
         // FILTER DATA TO SEARCH 
         const searchBinder: HTMLInputElement = document.getElementById("search")! as HTMLInputElement;
         searchBinder.addEventListener("keyup", () => {
-            this.onSearch(searchBinder, clientsData, "table-body");
+            this.onSearch(searchBinder, clientsData);
         });
 
         // Open the filter modal
@@ -65,18 +71,19 @@ class ClientsView {
 
     }
 
-    private async displayClients(tableID: string, data: any) {
+    private async displayClients(tableID: string, data: any[], state: string): Promise<void> {
         const table = document.getElementById(tableID)!;
-        table.innerHTML = "";
+        table.innerHTML = ""; // clear table content
 
-        for (let i = 0; i < await data.length; i++) {
-            const client = await data[i]; //=> 
-            const row: HTMLTableRowElement = document.createElement("tr")! as HTMLTableRowElement;
+        const DATA = data.filter((d: any) => `${d.state.name}`.includes(state));
 
-            row.id = await client.id; // Set the Client ID to the row
+        for (let i = 0; i < DATA.length; i++) {
+            const client = await DATA[i];
+            const row = document.createElement("tr");
+            let index = 1 + i;
 
             row.innerHTML = /*html*/`
-                <td style="width: fit-content">${i + 1}</td>
+                <td style="width: fit-content">${index}</td>
                 <td class="text:noBreakline">${await checkUndefinedData(client.firstName)} ${await checkUndefinedData(client.lastName)}</td>
                 <td class="text:gray text:noBreakline">${updateDate(await checkUndefinedData(client.createdDate))}</td>
                 <td class="text:gray text:limit">${await checkUndefinedData(client.createdBy)}</td>
@@ -88,27 +95,26 @@ class ClientsView {
                 </td>
             `;
 
-            table?.appendChild(row);
-        }
+            table.appendChild(row);
 
-        // Open Client Information View
-        const RawInformationButtons = document.querySelectorAll("#open-client-information");
-        RawInformationButtons.forEach((button: any) => {
-            button.addEventListener("click", async () => {
-                clientsInformationView.render(button.dataset.id, data);
+            const RawInformationButtons = document.querySelectorAll("#open-client-information");
+            RawInformationButtons.forEach((button: any) => {
+                button.addEventListener("click", async () => {
+                    clientsInformationView.render(button.dataset.id, data);
+                });
             });
-        });
+        }
     }
 
     // Search
-    private async onSearch(input: HTMLInputElement, clients: any, tableId: string) {
-        document.getElementById(tableId)!.innerHTML = "";
+    private async onSearch(input: HTMLInputElement, clients: any) {
         // On Keyup search: firstName and lastName 
-        const filteredData = await clients.filter((client: any) => `${client.firstName}${client.lastName}${client.createdBy}`
+        const filteredData = await clients.filter((client: any) => `${client.firstName} ${client.lastName} ${client.createdBy}`
             .toLowerCase().includes(`${input.value.trim().replace(/^\s+|\s+$/gm, '').toLowerCase()}`)); // FIXME
 
         // Render the table with the data filtered
-        this.displayClients(tableId, filteredData);
+        this.displayClients("table-enabled-items", filteredData, "Enabled");
+        this.displayClients("table-disabled-items", filteredData, "Disabled");
     }
 
     // Search filter //TODO
