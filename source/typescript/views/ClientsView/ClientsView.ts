@@ -22,7 +22,7 @@ class ClientsView {
 
                 <div class="view-header_controls">
                     <button class="control-button" id="filter"><i class="ph ph-funnel"></i></button>
-                    <div class="search">
+                    <div class="input-icon">
                         <label for="search"><i class="ph ph-magnifying-glass"></i></label>
                         <input type="search" name="search" id="search" placeholder="Search in clients"/>
                     </div>
@@ -72,8 +72,8 @@ class ClientsView {
     }
 
     private async displayClients(tableID: string, data: any[], state: string): Promise<void> {
-        const table = document.getElementById(tableID)!;
-        table.innerHTML = ""; // clear table content
+        const tableContent = document.getElementById(tableID)!;
+        tableContent.innerHTML = ""; // clear table content
 
         const DATA = data.filter((d: any) => `${d.state.name}`.includes(state));
 
@@ -95,7 +95,7 @@ class ClientsView {
                 </td>
             `;
 
-            table.appendChild(row);
+            tableContent.appendChild(row);
 
             const RawInformationButtons = document.querySelectorAll("#open-client-information");
             RawInformationButtons.forEach((button: any) => {

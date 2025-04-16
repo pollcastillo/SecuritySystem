@@ -2,6 +2,7 @@ table {
     border-collapse: collapse;
     width: 100%;
     overflow: hidden;
+    margin-bottom: 200px;
 }
 
 thead,
@@ -74,6 +75,12 @@ table .ph-warning {
 
 .table-button_group button .ph-recycle {
     color: var(--red-400);
+}
+
+tbody tr:hover {
+    background-color: var(--neutral-900);
+    cursor: pointer;
+    outline: 1px solid var(--neutral-700);
 }
 
 @media (prefers-color-scheme: light) {

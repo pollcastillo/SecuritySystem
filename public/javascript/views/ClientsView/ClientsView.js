@@ -30,7 +30,7 @@ class ClientsView {
 
                 <div class="view-header_controls">
                     <button class="control-button" id="filter"><i class="ph ph-funnel"></i></button>
-                    <div class="search">
+                    <div class="input-icon">
                         <label for="search"><i class="ph ph-magnifying-glass"></i></label>
                         <input type="search" name="search" id="search" placeholder="Search in clients"/>
                     </div>
@@ -76,8 +76,8 @@ class ClientsView {
     }
     displayClients(tableID, data, state) {
         return __awaiter(this, void 0, void 0, function* () {
-            const table = document.getElementById(tableID);
-            table.innerHTML = ""; // clear table content
+            const tableContent = document.getElementById(tableID);
+            tableContent.innerHTML = ""; // clear table content
             const DATA = data.filter((d) => `${d.state.name}`.includes(state));
             for (let i = 0; i < DATA.length; i++) {
                 const client = yield DATA[i];
@@ -95,7 +95,7 @@ class ClientsView {
                     <button data-id="${yield client.id}"><i class="ph ph-recycle"></i></button>
                 </td>
             `;
-                table.appendChild(row);
+                tableContent.appendChild(row);
                 const RawInformationButtons = document.querySelectorAll("#open-client-information");
                 RawInformationButtons.forEach((button) => {
                     button.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {

@@ -1,0 +1,42 @@
+.input-icon {
+    display: flex;
+    align-items: center;
+}
+
+.input-icon label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    width: 42px;
+    background-color: var(--neutral-900);
+    border: var(--border-solid) var(--neutral-800);
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-right: none;
+}
+
+.input-icon label i {
+    font-size: 18px;
+}
+
+.input-icon input::-webkit-search-cancel-button {
+    color: var(--neutral-200);
+    background-color: var(--neutral-200);
+}
+
+.input-icon input {
+    height: 42px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: var(--neutral-900);
+    border-color: var(--neutral-800);
+}
+
+.input-icon input::placeholder {
+    color: var(--neutral-600);
+}
+
+.input-icon input:focus {
+    border-color: var(--neutral-700);
+}

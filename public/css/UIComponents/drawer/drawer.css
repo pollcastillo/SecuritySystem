@@ -30,6 +30,8 @@
 .drawer-information {
     display: flex;
     flex-direction: column;
+    height: 100%;
+    max-height: calc(100vh - 90px);
 }
 
 .drawer-information .close {
@@ -98,6 +100,7 @@
     Border-radius: 8px;
     height: 100%;
     border: var(--border-solid) var(--neutral-800);
+    overflow: scroll;
 }
 
 .drawer-controls {
