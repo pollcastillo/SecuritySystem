@@ -20,7 +20,7 @@ class NotesView {
 
                 <div class="view-header_controls">
                     <button class="control-button" id="filter"><i class="ph ph-funnel"></i></button>
-                    <div class="flex">
+                    <div class="input-icon">
                         <label for="search" class="flex py-2 px-1.5 bg-stone-800 rounded-tl-md rounded-bl-md"><i class="ph ph-magnifying-glass"></i></label>
                         <input type="search" name="search" id="search" placeholder="Search in notes" class="text-xs py-1 px-2 rounded-tr-md rounded-br-md bg-stone-900 border border-stone-800 placeholder:text-stone-500 outline-none"/>
                     </div>
@@ -97,10 +97,10 @@ class NotesView {
     }
 
     // Search
-    private async onSearch(input: HTMLInputElement, clients: any, tableId: string) {
+    private async onSearch(input: HTMLInputElement, notes: any, tableId: string) {
         document.getElementById(tableId)!.innerHTML = "";
         // On Keyup search: firstName and lastName 
-        const filteredData = await clients.filter((client: any) => `${client.firstName}${client.lastName}${client.createdBy}`
+        const filteredData = await notes.filter((note: any) => `${note.title} ${note.content}`
             .toLowerCase().includes(`${input.value.trim().replace(/^\s+|\s+$/gm, '').toLowerCase()}`)); // FIXME
 
         // Render the table with the data filtered

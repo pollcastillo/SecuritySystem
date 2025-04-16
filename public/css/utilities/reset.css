@@ -32,9 +32,3 @@ a {
     text-decoration: none;
     color: inherit;
 }
-
-.app {
-    display: flex;
-    height: 100vh;
-    background-color: var(--gray-950);
-}

@@ -21,7 +21,8 @@ class Auth {
             // writing necessary elements to render the interface
             layout.draw();
             // dashboardView.render();
-            notesView.render();
+            // notesView.render();
+            clientsView.render();
         }
     }
 

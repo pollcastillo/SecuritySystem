@@ -17,11 +17,11 @@
     flex-direction: column;
     align-items: center;
 
-    background-color: rgba(7, 7, 7, 0.6);
+    background-color: var(--neutral-950);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     padding: 16px;
-    border: var(--border-solid) var(--gray-900);
+    border: var(--border-solid) var(--neutral-900);
     border-radius: 8px;
     gap: 16px;
 }
@@ -57,7 +57,7 @@
 
     .window-floater_window {
         background-color: rgba(255, 255, 255, 0.6);
-        border: var(--border-solid) var(--gray-300);
+        border: var(--border-solid) var(--neutral-300);
     }
 
     .window-floater_options button:nth-child(1) {

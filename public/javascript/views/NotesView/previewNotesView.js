@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { checkUndefinedData } from '../../functions/CheckUndefinedData.js';
+import { updateDate } from '../../functions/UpdateDate.js';
 class PreviewNotesView {
     render(noteID, data) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -17,14 +18,28 @@ class PreviewNotesView {
             const InformationComponent = document.createElement("div");
             InformationComponent.classList.add("drawer-content");
             InformationComponent.id = note.id;
-            console.log(data);
             drawer.innerHTML = "";
             InformationComponent.innerHTML = /*html*/ `
-            <div class="drawer-content">
+            <div class="drawer-information">
                 <button id="close" class="close"><i class="ph ph-x"></i></button>
+                
                 <h1>${yield checkUndefinedData(note.title)}</h1>
                 
-                <p>${yield checkUndefinedData(note.content)}</p>
+                <div class="drawer-data-information">
+                    <div class="info">
+                        <span class="info-title">Created By</span>
+                        <span class="info-badge">${note.user.firstName}</span>
+                    </div>
+                    
+                    <div class="info">
+                        <span class="info-title">Creation Date</span>
+                        <span class="info-content">${updateDate(yield note.createdDate)}</span>
+                    </div>
+                </div>
+                
+                <div class="drawer-data-content">
+                    <p>${yield checkUndefinedData(note.content)}</p>
+                </div>
             </div>
 
             <div class="drawer-controls">

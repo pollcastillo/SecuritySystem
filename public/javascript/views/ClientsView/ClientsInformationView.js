@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { checkUndefinedData } from '../../functions/CheckUndefinedData.js';
+import { translateStates } from '../../functions/TranslateStates.js';
 import { updateDate } from '../../functions/UpdateDate.js';
 class ClientsInformationView {
     render(clientID, data) {
@@ -16,14 +17,26 @@ class ClientsInformationView {
             const clients = yield data.filter((client) => client.id === clientID);
             const client = clients[0];
             const InformationComponent = document.createElement("div");
-            InformationComponent.classList.add("client-information-container");
+            InformationComponent.classList.add("drawer-content");
             InformationComponent.id = client.id;
             console.log(data);
             drawer.innerHTML = "";
             InformationComponent.innerHTML = /*html*/ `
-            <div class="drawer-content">
+            <div class="drawer-information">
                 <button id="close" class="close"><i class="ph ph-x"></i></button>
                 <h1>${yield checkUndefinedData(client.firstName)} ${yield checkUndefinedData(client.lastName)}</h1>
+
+                <div class="drawer-data-information">
+                    <div class="info">
+                        <span class="info-title">Status</span>
+                        <span class="info-badge">${yield translateStates(yield checkUndefinedData(client.state.name))}</span>
+                    </div>
+                    
+                    <div class="info">
+                        <span class="info-title">Phone Number</span>
+                        <span class="info-content">${yield client.phone}</span>
+                    </div>
+                </div>
                 
                 <p><i class="ph ph-users"></i> ${yield checkUndefinedData(client.createdBy)}</p>
                 <p><i class="ph ph-phone"></i> ${yield checkUndefinedData(client.phone)}</p>
@@ -37,13 +50,14 @@ class ClientsInformationView {
                 <div id="customer"></div>
             </div>
 
-            <div class="controls">
+            <div class="drawer-controls">
                 <button id="edit-client">Edit</button>
                 <button id="delete-client">Delete</button>
             </div>
         `;
             console.log(clients[0].firstName);
             drawer.classList.add("isActive");
+            drawer.classList.add("drawer");
             drawer.appendChild(InformationComponent);
             const close = document.getElementById("close");
             close.addEventListener("click", () => {

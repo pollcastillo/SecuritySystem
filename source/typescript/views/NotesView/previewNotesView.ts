@@ -10,17 +10,29 @@ class PreviewNotesView {
         const InformationComponent = document.createElement("div");
         InformationComponent.classList.add("drawer-content");
         InformationComponent.id = note.id;
-
-        console.log(data);
-
         drawer.innerHTML = "";
 
         InformationComponent.innerHTML = /*html*/`
-            <div class="drawer-content">
+            <div class="drawer-information">
                 <button id="close" class="close"><i class="ph ph-x"></i></button>
+                
                 <h1>${await checkUndefinedData(note.title)}</h1>
                 
-                <p>${await checkUndefinedData(note.content)}</p>
+                <div class="drawer-data-information">
+                    <div class="info">
+                        <span class="info-title">Created By</span>
+                        <span class="info-badge">${note.user.firstName}</span>
+                    </div>
+                    
+                    <div class="info">
+                        <span class="info-title">Creation Date</span>
+                        <span class="info-content">${updateDate(await note.createdDate)}</span>
+                    </div>
+                </div>
+                
+                <div class="drawer-data-content">
+                    <p>${await checkUndefinedData(note.content)}</p>
+                </div>
             </div>
 
             <div class="drawer-controls">
@@ -31,7 +43,6 @@ class PreviewNotesView {
 
         console.log(notes[0].title);
         drawer.classList.add("isActive");
-
         drawer.classList.add("drawer");
 
         drawer.appendChild(InformationComponent);
