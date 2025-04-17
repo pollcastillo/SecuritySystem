@@ -21,7 +21,6 @@ class NotesView {
             const content = document.getElementById("content");
             const notesViewComponent = document.createElement("div");
             notesViewComponent.id = "clients-content";
-            notesViewComponent.classList.add("w-full", "p-4", "bg-stone-950", "overflow-y-scroll", "h-screen");
             console.log(notesData);
             notesViewComponent.innerHTML = /*html*/ `
             <div class="view-header">

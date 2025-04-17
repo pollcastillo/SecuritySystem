@@ -3,6 +3,7 @@ import { clientsView } from '../views/ClientsView/ClientsView.js';
 import { dashboardView } from '../views/DashboardView/DashboardView.js';
 import { loginView } from '../views/LoginView/LoginView.js';
 import { notesView } from '../views/NotesView/NotesView.js';
+import { notificationsView } from '../views/NotificationsView/NotificationsView.js';
 
 
 class Auth {
@@ -22,7 +23,8 @@ class Auth {
             layout.draw();
             // dashboardView.render();
             // notesView.render();
-            clientsView.render();
+            // clientsView.render();
+            notificationsView.render();
         }
     }
 
