@@ -1,6 +1,6 @@
-import { clientsView } from '../views/ClientsView/ClientsView.js';
-import { dashboardView } from '../views/DashboardView/DashboardView.js';
-import { notesView } from '../views/NotesView/NotesView.js';
+import { clientsView } from '../views/ClientsView/clients.view.js';
+import { notesView } from '../views/NotesView/notes.view.js';
+import { dashboardView } from '../views/DashboardView/dashboard.view.js';
 
 class Sidebar {
     public render() {
@@ -62,6 +62,7 @@ class Sidebar {
         const dashboard: HTMLElement = document.getElementById("dashboard")! as HTMLElement;
         dashboard?.addEventListener("click", () => {
             this.switchContent(dashboardView.render(), appContent);
+            // dashboardView.render();
         });
 
         const clients: HTMLElement = document.getElementById("clients")! as HTMLElement;
@@ -77,6 +78,7 @@ class Sidebar {
 
     private switchContent(exec: any, content: HTMLElement): void {
         content.innerHTML = "";
+        exec;
     }
 }
 

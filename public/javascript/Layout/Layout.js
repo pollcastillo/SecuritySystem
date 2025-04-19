@@ -25,7 +25,6 @@ class Layout {
         (_a = this.app) === null || _a === void 0 ? void 0 : _a.appendChild(contentHeader);
         this.app.appendChild(contentContainer);
         contentContainer.appendChild(drawer);
-        console.log(drawer);
         sidebar.render();
         header.render();
     }

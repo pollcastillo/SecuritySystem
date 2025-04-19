@@ -32,8 +32,6 @@ class Layout {
         this.app!.appendChild(contentContainer);
         contentContainer.appendChild(drawer);
 
-        console.log(drawer);
-
         sidebar.render();
         header.render();
     }

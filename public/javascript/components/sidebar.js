@@ -1,6 +1,6 @@
-import { clientsView } from '../views/ClientsView/ClientsView.js';
-import { dashboardView } from '../views/DashboardView/DashboardView.js';
-import { notesView } from '../views/NotesView/NotesView.js';
+import { clientsView } from '../views/ClientsView/clients.view.js';
+import { notesView } from '../views/NotesView/notes.view.js';
+import { dashboardView } from '../views/DashboardView/dashboard.view.js';
 class Sidebar {
     render() {
         // appContent to clear the content previows render the next view
@@ -58,6 +58,7 @@ class Sidebar {
         const dashboard = document.getElementById("dashboard");
         dashboard === null || dashboard === void 0 ? void 0 : dashboard.addEventListener("click", () => {
             this.switchContent(dashboardView.render(), appContent);
+            // dashboardView.render();
         });
         const clients = document.getElementById("clients");
         clients === null || clients === void 0 ? void 0 : clients.addEventListener("click", () => {
@@ -70,6 +71,7 @@ class Sidebar {
     }
     switchContent(exec, content) {
         content.innerHTML = "";
+        exec;
     }
 }
 export const sidebar = new Sidebar();

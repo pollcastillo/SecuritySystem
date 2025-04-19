@@ -1,9 +1,9 @@
 import { layout } from '../Layout/Layout.js';
-import { clientsView } from '../views/ClientsView/ClientsView.js';
-import { dashboardView } from '../views/DashboardView/DashboardView.js';
-import { loginView } from '../views/LoginView/LoginView.js';
-import { notesView } from '../views/NotesView/NotesView.js';
-import { notificationsView } from '../views/NotificationsView/NotificationsView.js';
+import { clientsView } from '../views/ClientsView/clients.view.js';
+import { dashboardView } from '../views/DashboardView/dashboard.view.js';
+import { loginView } from '../views/LoginView/login.view.js';
+import { notesView } from '../views/NotesView/notes.view.js';
+import { notificationsView } from '../views/NotificationsView/notifications.view.js';
 
 
 class Auth {
@@ -19,12 +19,12 @@ class Auth {
         } else if (storageChecking === "false") {
             loginView.render();
         } else if (storageChecking === "true") {
-            // writing necessary elements to render the interface
+            // WRITING NECESSARY ELEMENTS TO RENDER THE INTERFACE
             layout.draw();
-            // dashboardView.render();
+            dashboardView.render();
             // notesView.render();
             // clientsView.render();
-            notificationsView.render();
+            // notificationsView.render();
         }
     }
 

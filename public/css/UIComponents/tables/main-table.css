@@ -120,4 +120,10 @@ tbody tr:hover {
         border-top: var(--border-solid) var(--green-100);
         border-bottom: var(--border-solid) var(--green-100);
     }
+
+
+    tbody tr:hover {
+        background-color: var(--neutral-100);
+        outline: 1px solid var(--neutral-200);
+    }
 }

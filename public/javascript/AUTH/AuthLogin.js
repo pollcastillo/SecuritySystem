@@ -1,6 +1,6 @@
 import { layout } from '../Layout/Layout.js';
-import { loginView } from '../views/LoginView/LoginView.js';
-import { notificationsView } from '../views/NotificationsView/NotificationsView.js';
+import { dashboardView } from '../views/DashboardView/dashboard.view.js';
+import { loginView } from '../views/LoginView/login.view.js';
 class Auth {
     constructor() {
         this.app = document.getElementById("app");
@@ -16,12 +16,12 @@ class Auth {
             loginView.render();
         }
         else if (storageChecking === "true") {
-            // writing necessary elements to render the interface
+            // WRITING NECESSARY ELEMENTS TO RENDER THE INTERFACE
             layout.draw();
-            // dashboardView.render();
+            dashboardView.render();
             // notesView.render();
             // clientsView.render();
-            notificationsView.render();
+            // notificationsView.render();
         }
     }
     authorize() {

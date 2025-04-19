@@ -1,13 +1,13 @@
 import getData from '../../API/GetData.js';
 import { updateDate } from '../../functions/UpdateDate.js';
 import { checkUndefinedData } from '../../functions/CheckUndefinedData.js';
-import { previewNotesView } from './previewNotesView.js';
+import { previewNotesView } from './notes-preview.view.js';
 
 class NotesView {
-    private notesData: string = "../../data/Note.json";
+    private notesURI: string = "../../data/Note.json";
 
     public async render() {
-        const notesData: any = await getData(this.notesData); //=>
+        const notesData: any = await getData(this.notesURI); //=>
         const content: HTMLElement = document.getElementById("content")!;
         const notesViewComponent: HTMLElement = document.createElement("div");
         notesViewComponent.id = "clients-content";
@@ -16,7 +16,7 @@ class NotesView {
 
         notesViewComponent.innerHTML = /*html*/`
             <div class="view-header">
-                <h1 class="text-3xl font-black">Notes</h1>
+                <h1>Notes</h1>
 
                 <div class="view-header_controls">
                     <button class="control-button" id="filter"><i class="ph ph-funnel"></i></button>
@@ -74,10 +74,10 @@ class NotesView {
             row.id = await notes.id; // Set the Client ID to the row
 
             row.innerHTML = /*html*/`
-                <td class="px-6 py-4 font-medium whitespace-nowrap bg-stone-900 text-white table-element-fit truncate overflow-hidden w-fit">${await checkUndefinedData(notes.title)}</td>
-                <td class="px-6 py-4">${updateDate(await notes.creationDate)}</td>
-                <td class="px-6 py-4 truncate overflow-hidden bg-stone-900">${await checkUndefinedData(notes.user.firstName)} ${await checkUndefinedData(notes.user.lastName)}</td>
-                <td class="px-6 py-4">${await notes.content.length}</td>
+                <td>${await checkUndefinedData(notes.title)}</td>
+                <td>${updateDate(await notes.creationDate)}</td>
+                <td>${await checkUndefinedData(notes.user.firstName)} ${await checkUndefinedData(notes.user.lastName)}</td>
+                <td>${await notes.content.length}</td>
                 <td class="table-button_group">
                     <button data-id="${await notes.id}" id="open-client-information"><i class="ph ph-info"></i></button>
                     <button data-id="${await notes.id}"><i class="ph ph-recycle"></i></button>

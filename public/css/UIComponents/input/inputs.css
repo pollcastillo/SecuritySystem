@@ -40,3 +40,22 @@
 .input-icon input:focus {
     border-color: var(--neutral-700);
 }
+
+@media (prefers-color-scheme: light) {
+    .input-icon label {
+        background-color: var(--neutral-50);
+        border-color: var(--neutral-200)
+    }
+
+    .input-icon input {
+        background-color: var(--neutral-50);
+        border-color: var(--neutral-200);
+        color: var(--neutral-500);
+    }
+
+    .input-icon input:focus {
+        border-color: var(--neutral-300);
+        color: var(--neutral-700)
+    }
+
+}

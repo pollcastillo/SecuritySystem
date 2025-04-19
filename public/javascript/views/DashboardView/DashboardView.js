@@ -2,10 +2,15 @@ class DashboardView {
     render() {
         const content = document.getElementById("content");
         const dashboard = document.createElement("div");
-        dashboard.id = "dashboard";
+        dashboard.id = "dashboard-content";
         dashboard.innerHTML = /*html*/ `
-            <h1>Dashboard</div>
-            <button id="button">Button</button>
+            <div class="view-header">
+                <h1>Dashboard</h1>
+            </div>
+
+            <div>
+                <p>lorem ipsum</p>
+            </div>
         `;
         content.appendChild(dashboard);
         const button = document.getElementById("button");

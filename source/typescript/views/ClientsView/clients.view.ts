@@ -2,7 +2,7 @@ import getData from '../../API/GetData.js';
 import { translateStates } from '../../functions/TranslateStates.js';
 import { updateDate } from '../../functions/UpdateDate.js';
 import { checkUndefinedData } from '../../functions/CheckUndefinedData.js';
-import { clientsInformationView } from './ClientsInformationView.js';
+import { clientsInformationView } from './clients-preview.view.js';
 
 class ClientsView {
     private usersData: string = "../../data/User.json";

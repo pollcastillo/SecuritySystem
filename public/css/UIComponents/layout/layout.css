@@ -11,7 +11,7 @@
 
 .header {
     padding: 16px;
-    border-bottom: var(--border-solid) var(--border-variant-2);
+    border-bottom: var(--border-solid) var(--neutral-900);
 }
 
 .header .logo {
@@ -89,7 +89,7 @@
     }
 
     .header {
-        border-color: var(--neutral-200);
+        border-color: var(--neutral-100);
     }
 
     .header-button_group button {
