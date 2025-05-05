@@ -16,6 +16,7 @@ export default class DashboardView {
     onEdit(id) { } // bind method
     render(data) {
         return __awaiter(this, void 0, void 0, function* () {
+            this.appContent.innerHTML = "";
             const DASHBOARD_CONTENT = document.createElement("div");
             DASHBOARD_CONTENT.id = "dashboard-content";
             DASHBOARD_CONTENT.innerHTML = /*html*/ `

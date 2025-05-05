@@ -10,6 +10,8 @@ export default class DashboardView implements View {
     private onEdit(id: any): any { } // bind method
 
     public async render(data: any[]): Promise<void> {
+        this.appContent.innerHTML = "";
+
         const DASHBOARD_CONTENT: HTMLElement = document.createElement("div")!;
         DASHBOARD_CONTENT.id = "dashboard-content";
 
