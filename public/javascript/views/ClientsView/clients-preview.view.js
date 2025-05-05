@@ -7,9 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { checkUndefinedData } from '../../functions/CheckUndefinedData.js';
-import { translateStates } from '../../functions/TranslateStates.js';
-import { updateDate } from '../../functions/UpdateDate.js';
+import { translateStates } from '../../Core/functions/translateStates.function.js';
+import { coreServices } from '../../_core/services/services.js';
 class ClientsInformationView {
     render(clientID, data) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -24,12 +23,12 @@ class ClientsInformationView {
             InformationComponent.innerHTML = /*html*/ `
             <div class="drawer-information">
                 <button id="close" class="close"><i class="ph ph-x"></i></button>
-                <h1>${yield checkUndefinedData(client.firstName)} ${yield checkUndefinedData(client.lastName)}</h1>
+                <h1>${yield coreServices.validateData(client.firstName)} ${yield coreServices.validateData(client.lastName)}</h1>
 
                 <div class="drawer-data-information">
                     <div class="info">
                         <span class="info-title">Status</span>
-                        <span class="info-badge">${yield translateStates(yield checkUndefinedData(client.state.name))}</span>
+                        <span class="info-badge">${yield translateStates(yield coreServices.validateData(client.state.name))}</span>
                     </div>
                     
                     <div class="info">
@@ -38,8 +37,8 @@ class ClientsInformationView {
                     </div>
                 </div>
                 
-                <p><i class="ph ph-users"></i> ${yield checkUndefinedData(client.createdBy)}</p>
-                <p><i class="ph ph-phone"></i> ${yield checkUndefinedData(client.phone)}</p>
+                <p><i class="ph ph-users"></i> ${yield coreServices.validateData(client.createdBy)}</p>
+                <p><i class="ph ph-phone"></i> ${yield coreServices.validateData(client.phone)}</p>
                 <p>Client Address: ${client.address}</p>
                 <p>Client Status: ${client.state.name}</p>
 
@@ -75,9 +74,9 @@ class ClientsInformationView {
             if (data.citadel) {
                 citadel.innerHTML = /*html*/ `
                 <h3>Citadel </h3>
-                <p><i class="ph ph-city"></i> ${yield checkUndefinedData(data.citadel.name)}</p>
-                <p><i class="ph ph-users"></i> ${yield checkUndefinedData(data.citadel.createdBy)}</p>
-                <p><i class="ph ph-calendar-x"></i> ${updateDate(yield checkUndefinedData(data.citadel.createdDate))}</p>
+                <p><i class="ph ph-city"></i> ${yield coreServices.validateData(data.citadel.name)}</p>
+                <p><i class="ph ph-users"></i> ${yield coreServices.validateData(data.citadel.createdBy)}</p>
+                <p><i class="ph ph-calendar-x"></i> ${yield coreServices.translateDate(data.citadel.createdDate)}</p>
             `;
             }
             else {
@@ -91,8 +90,8 @@ class ClientsInformationView {
             if (data.contractor) {
                 contractor.innerHTML = /*html*/ `
                 <h3>Contractor</h3>
-                <p><i class="ph ph-identification-badge"></i> Name: ${yield checkUndefinedData(data.contractor.name)}</p>
-                <p><i class="ph ph-users"></i> Created By: ${yield checkUndefinedData(data.contractor.createdBy)}</p>
+                <p><i class="ph ph-identification-badge"></i> Name: ${yield coreServices.validateData(data.contractor.name)}</p>
+                <p><i class="ph ph-users"></i> Created By: ${yield coreServices.validateData(data.contractor.createdBy)}</p>
             `;
             }
             else {
@@ -106,10 +105,10 @@ class ClientsInformationView {
             if (data.customer) {
                 customer.innerHTML = /*html*/ `
                 <h3>Customer</h3>
-                <p><i class="ph ph-users"></i> Name: ${yield checkUndefinedData(data.customer.name)}</p>
-                <p><i class="ph ph-plugs"></i> associate: ${yield checkUndefinedData(data.customer.associate)}</p>
-                <p><i class="ph ph-users"></i> Created By: ${yield checkUndefinedData(data.customer.createdBy)}</p>
-                <p><i class="ph ph-hash"></i> RUC: ${yield checkUndefinedData(data.customer.ruc)}</p>
+                <p><i class="ph ph-users"></i> Name: ${yield coreServices.validateData(data.customer.name)}</p>
+                <p><i class="ph ph-plugs"></i> associate: ${yield coreServices.validateData(data.customer.associate)}</p>
+                <p><i class="ph ph-users"></i> Created By: ${yield coreServices.validateData(data.customer.createdBy)}</p>
+                <p><i class="ph ph-hash"></i> RUC: ${yield coreServices.validateData(data.customer.ruc)}</p>
             `;
             }
             else {

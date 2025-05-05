@@ -35,6 +35,10 @@
     color: var(--white);
 }
 
+.sb-active-item {
+    color: var(--blue-500);
+}
+
 @media (prefers-color-scheme: light) {
     .sidebar-wrapper {
         background-color: var(--white);
@@ -48,5 +52,10 @@
     .sidebar-item:hover {
         background-color: var(--neutral-100);
         color: var(--black);
+    }
+
+    .sb-active-item {
+        color: var(--blue-500);
+        background-color: var(--blue-50);
     }
 }

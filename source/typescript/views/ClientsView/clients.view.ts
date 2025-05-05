@@ -1,7 +1,6 @@
-import getData from '../../API/GetData.js';
-import { translateStates } from '../../functions/TranslateStates.js';
-import { updateDate } from '../../functions/UpdateDate.js';
-import { checkUndefinedData } from '../../functions/CheckUndefinedData.js';
+import { coreServices } from '../../_core/services/services.js';
+import getData from '../../Core/API/GetData.js';
+import { translateStates } from '../../Core/functions/translateStates.function.js';
 import { clientsInformationView } from './clients-preview.view.js';
 
 class ClientsView {
@@ -84,10 +83,10 @@ class ClientsView {
 
             row.innerHTML = /*html*/`
                 <td style="width: fit-content">${index}</td>
-                <td class="text:noBreakline">${await checkUndefinedData(client.firstName)} ${await checkUndefinedData(client.lastName)}</td>
-                <td class="text:gray text:noBreakline">${updateDate(await checkUndefinedData(client.createdDate))}</td>
-                <td class="text:gray text:limit">${await checkUndefinedData(client.createdBy)}</td>
-                <td class="text:gray"><span class="table:state data:${await client.state.name.toLowerCase()}">${translateStates(await checkUndefinedData(client.state.name))}</span></td>
+                <td class="text:noBreakline">${await coreServices.validateData(client.firstName)} ${await coreServices.validateData(client.lastName)}</td>
+                <td class="text:gray text:noBreakline">${await coreServices.translateDate(client.createdDate)}</td>
+                <td class="text:gray text:limit">${await coreServices.validateData(client.createdBy)}</td>
+                <td class="text:gray"><span class="table:state data:${await client.state.name.toLowerCase()}">${translateStates(await coreServices.validateData(client.state.name))}</span></td>
                 <td class="table-button_group">
                     <button data-id="${await client.id}" id="open-edit-client-information"><i class="ph ph-pencil"></i></button>
                     <button data-id="${await client.id}" id="open-client-information"><i class="ph ph-info"></i></button>
@@ -147,7 +146,6 @@ class ClientsView {
             FILTER.remove();
         });
     }
-
 }
 
 export const clientsView = new ClientsView();

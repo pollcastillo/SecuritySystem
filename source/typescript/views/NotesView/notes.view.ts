@@ -1,6 +1,5 @@
-import getData from '../../API/GetData.js';
-import { updateDate } from '../../functions/UpdateDate.js';
-import { checkUndefinedData } from '../../functions/CheckUndefinedData.js';
+import { coreServices } from '../../_core/services/services.js';
+import getData from '../../Core/API/GetData.js';
 import { previewNotesView } from './notes-preview.view.js';
 
 class NotesView {
@@ -74,9 +73,9 @@ class NotesView {
             row.id = await notes.id; // Set the Client ID to the row
 
             row.innerHTML = /*html*/`
-                <td>${await checkUndefinedData(notes.title)}</td>
-                <td>${updateDate(await notes.creationDate)}</td>
-                <td>${await checkUndefinedData(notes.user.firstName)} ${await checkUndefinedData(notes.user.lastName)}</td>
+                <td>${await coreServices.validateData(notes.title)}</td>
+                <td>${await coreServices.translateDate(notes.creationDate)}</td>
+                <td>${await coreServices.validateData(notes.user.firstName)} ${await coreServices.validateData(notes.user.lastName)}</td>
                 <td>${await notes.content.length}</td>
                 <td class="table-button_group">
                     <button data-id="${await notes.id}" id="open-client-information"><i class="ph ph-info"></i></button>

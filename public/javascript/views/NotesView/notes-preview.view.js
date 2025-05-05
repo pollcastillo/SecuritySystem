@@ -7,8 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { checkUndefinedData } from '../../functions/CheckUndefinedData.js';
-import { updateDate } from '../../functions/UpdateDate.js';
+import { coreServices } from '../../_core/services/services.js';
 class PreviewNotesView {
     render(noteID, data) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -23,7 +22,7 @@ class PreviewNotesView {
             <div class="drawer-information">
                 <button id="close" class="close"><i class="ph ph-x"></i></button>
                 
-                <h1>${yield checkUndefinedData(note.title)}</h1>
+                <h1>${yield coreServices.validateData(note.title)}</h1>
                 
                 <div class="drawer-data-information">
                     <div class="info">
@@ -33,12 +32,12 @@ class PreviewNotesView {
                     
                     <div class="info">
                         <span class="info-title">Creation Date</span>
-                        <span class="info-content">${updateDate(yield note.createdDate)}</span>
+                        <span class="info-content">${yield coreServices.translateDate(note.createdDate)}</span>
                     </div>
                 </div>
                 
                 <div class="drawer-data-content">
-                    <p>${yield checkUndefinedData(note.content)}</p>
+                    <p>${yield coreServices.validateData(note.content)}</p>
                 </div>
             </div>
 

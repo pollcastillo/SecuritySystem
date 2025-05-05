@@ -1,6 +1,4 @@
-import getData from '../../API/GetData.js';
-import { updateDate } from '../../functions/UpdateDate.js';
-import { checkUndefinedData } from '../../functions/CheckUndefinedData.js';
+import getData from '../../Core/API/GetData.js';
 
 class NotificationsView {
     private notificationsData: string = "../../data/Notification.json";

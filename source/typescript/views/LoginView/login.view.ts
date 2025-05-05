@@ -1,4 +1,4 @@
-import { auth } from '../../AUTH/AuthLogin.js';
+import { login } from '../../Core/AUTH/login.authService.js';
 
 class LoginView {
     private app: HTMLElement = document.getElementById("app")! as HTMLElement;

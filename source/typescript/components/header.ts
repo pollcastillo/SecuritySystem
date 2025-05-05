@@ -1,4 +1,4 @@
-import { LOGOUT } from '../functions/Logout.js';
+import { LOGOUT } from '../Core/functions/logout.function.js';
 
 class Header {
     render() {

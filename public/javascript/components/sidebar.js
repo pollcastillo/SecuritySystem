@@ -1,6 +1,8 @@
 import { clientsView } from '../views/ClientsView/clients.view.js';
 import { notesView } from '../views/NotesView/notes.view.js';
-import { dashboardView } from '../views/DashboardView/dashboard.view.js';
+import DashboardController from '../controllers/dashboard.controller.js';
+import DashboardModel from '../models/dashboard.model.js';
+import DashboardView from '../views/dashboard.view.js';
 class Sidebar {
     render() {
         // appContent to clear the content previows render the next view
@@ -9,12 +11,12 @@ class Sidebar {
         const content = document.createElement("div");
         content.classList.add("sidebar");
         content.innerHTML = /*html*/ `
-                <button class="sidebar-item" id="dashboard">
+                <button class="sidebar-item" id="sb-dashboard">
                     <i class="ph ph-sidebar-simple"></i>
                     Dashboard
                 </button>
 
-                <button class="sidebar-item" id="clients">
+                <button class="sidebar-item" id="sb-clients">
                     <i class="ph ph-city"></i>
                     Clients
                 </button>
@@ -34,7 +36,7 @@ class Sidebar {
                     emergency
                 </button>
 
-                <button class="sidebar-item" id="notes">
+                <button class="sidebar-item" id="sb-notes">
                     <i class="ph ph-note"></i>
                     Notes
                 </button>
@@ -55,16 +57,17 @@ class Sidebar {
                 </button>
         `;
         sidebar.appendChild(content);
-        const dashboard = document.getElementById("dashboard");
+        const dashboard = document.getElementById("sb-dashboard");
         dashboard === null || dashboard === void 0 ? void 0 : dashboard.addEventListener("click", () => {
-            this.switchContent(dashboardView.render(), appContent);
+            this.switchContent(new DashboardController(new DashboardModel(), new DashboardView()), // Render Dashboard
+            appContent);
             // dashboardView.render();
         });
-        const clients = document.getElementById("clients");
+        const clients = document.getElementById("sb-clients");
         clients === null || clients === void 0 ? void 0 : clients.addEventListener("click", () => {
             this.switchContent(clientsView.render(), appContent);
         });
-        const notes = document.getElementById("notes");
+        const notes = document.getElementById("sb-notes");
         notes === null || notes === void 0 ? void 0 : notes.addEventListener("click", () => {
             this.switchContent(notesView.render(), appContent);
         });

@@ -7,9 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import getData from '../../API/GetData.js';
-import { updateDate } from '../../functions/UpdateDate.js';
-import { checkUndefinedData } from '../../functions/CheckUndefinedData.js';
+import { coreServices } from '../../_core/services/services.js';
+import getData from '../../Core/API/GetData.js';
 import { previewNotesView } from './notes-preview.view.js';
 class NotesView {
     constructor() {
@@ -76,9 +75,9 @@ class NotesView {
                 const row = document.createElement("tr");
                 row.id = yield notes.id; // Set the Client ID to the row
                 row.innerHTML = /*html*/ `
-                <td>${yield checkUndefinedData(notes.title)}</td>
-                <td>${updateDate(yield notes.creationDate)}</td>
-                <td>${yield checkUndefinedData(notes.user.firstName)} ${yield checkUndefinedData(notes.user.lastName)}</td>
+                <td>${yield coreServices.validateData(notes.title)}</td>
+                <td>${yield coreServices.translateDate(notes.creationDate)}</td>
+                <td>${yield coreServices.validateData(notes.user.firstName)} ${yield coreServices.validateData(notes.user.lastName)}</td>
                 <td>${yield notes.content.length}</td>
                 <td class="table-button_group">
                     <button data-id="${yield notes.id}" id="open-client-information"><i class="ph ph-info"></i></button>

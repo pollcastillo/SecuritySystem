@@ -1,4 +1,5 @@
-import { auth } from './AUTH/AuthLogin.js';
+// @ts-ignore
+import { login } from './Core/AUTH/login.authService.js';
 
 
-auth.onStartup();
+login.onStartup();

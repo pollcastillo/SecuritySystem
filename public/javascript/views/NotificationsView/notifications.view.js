@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import getData from '../../API/GetData.js';
+import getData from '../../Core/API/GetData.js';
 class NotificationsView {
     constructor() {
         this.notificationsData = "../../data/Notification.json";
