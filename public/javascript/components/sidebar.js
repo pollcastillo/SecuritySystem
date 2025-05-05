@@ -59,9 +59,7 @@ class Sidebar {
         sidebar.appendChild(content);
         const dashboard = document.getElementById("sb-dashboard");
         dashboard === null || dashboard === void 0 ? void 0 : dashboard.addEventListener("click", () => {
-            this.switchContent(new DashboardController(new DashboardModel(), new DashboardView()), // Render Dashboard
-            appContent);
-            // dashboardView.render();
+            new DashboardController(new DashboardModel(), new DashboardView()); // Render Dashboard
         });
         const clients = document.getElementById("sb-clients");
         clients === null || clients === void 0 ? void 0 : clients.addEventListener("click", () => {

@@ -63,14 +63,10 @@ class Sidebar {
 
         const dashboard: HTMLElement = document.getElementById("sb-dashboard")! as HTMLElement;
         dashboard?.addEventListener("click", () => {
-            this.switchContent(
-                new DashboardController(
-                    new DashboardModel(),
-                    new DashboardView()
-                ), // Render Dashboard
-                appContent
-            );
-            // dashboardView.render();
+            new DashboardController(
+                new DashboardModel(),
+                new DashboardView()
+            ); // Render Dashboard
         });
 
         const clients: HTMLElement = document.getElementById("sb-clients")! as HTMLElement;
