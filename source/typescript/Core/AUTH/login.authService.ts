@@ -1,8 +1,11 @@
-import { layout } from '../Layout/Layout.js';
 import { loginView } from '../../views/LoginView/login.view.js';
 import DashboardController from '../../controllers/dashboard.controller.js';
 import DashboardModel from '../../models/dashboard.model.js';
-import DashboardView from '../../views/dashboard.view.js';
+import DashboardView from '../../views/DashboardView/dashboard.view.js';
+import ClientsController from '../../controllers/clients.controller.js';
+import ClientsModel from '../../models/clients.model.js';
+import ClientsView from '../../views/ClientsView/clients.view.js';
+import { layoutView } from '../../views/LayoutView/layout.view.js';
 
 class Auth {
     private app = document.getElementById("app");
@@ -22,8 +25,9 @@ class Auth {
 
         } else if (storageChecking === "true") {
 
-            layout.draw(); // draw layout if true
-            new DashboardController(new DashboardModel(), new DashboardView());
+            layoutView.draw();
+            // new DashboardController(new DashboardModel(), new DashboardView());
+            new ClientsController(new ClientsModel, new ClientsView);
 
         }
     }

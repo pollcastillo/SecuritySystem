@@ -1,8 +1,27 @@
 {
     "folders": [
         {
+            "name": "Root",
+            "path": "."
+        },
+        {
             "name": "Core",
-            "path": "./source/typescript/_core"
+            "path": "source/typescript/_core"
+        },
+        {
+            "name": "Models",
+            "path": "source/typescript/models"
+        },
+        {
+            "name": "Views",
+            "path": "source/typescript/views"
+        },
+        {
+            "name": "Controllers",
+            "path": "source/typescript/controllers"
         }
-    ]
+    ],
+    "settings": {
+        "liveServer.settings.multiRootWorkspaceName": "Root"
+    }
 }

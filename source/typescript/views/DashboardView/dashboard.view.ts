@@ -1,8 +1,8 @@
-import { View } from '../_core/_app.core.js';
-import { coreServices } from '../_core/services/services.js';
+import { View } from '../../_core/_app.core.js';
+import { coreServices } from '../../_core/services/services.js';
 
 type State = "Enabled" | "Disabled";
-type TableOpton = "table-enabled-items" | "table-disabled-items";
+type TableOption = "table-enabled-items" | "table-disabled-items";
 
 export default class DashboardView implements View {
     private appContent: HTMLElement = document.getElementById("content")!;
@@ -54,7 +54,7 @@ export default class DashboardView implements View {
         this.displayData("table-disabled-items", await data, "Disabled");
     }
 
-    private async displayData(tableID: TableOpton, data: any[], state?: State): Promise<void> {
+    private async displayData(tableID: TableOption, data: any[], state?: State): Promise<void> {
         const TABLE = document.getElementById(tableID)!;
         TABLE.innerHTML = "";
 
@@ -74,7 +74,7 @@ export default class DashboardView implements View {
             edit_button.innerHTML = `<i class="ph ph-pencil"></i>`;
 
 
-            row.innerHTML = /*html*/`
+            row.innerHTML = `
                 <td>${index}</td>
                 <td>${await coreServices.validateData(client.firstName)} ${await coreServices.validateData(client.lastName)}</td>
                 <td>${await coreServices.translateDate(client.createdDate)}</td>

@@ -13,8 +13,14 @@ class Service {
             return (yield data) === undefined ? '<span class="ph ph-warning text:yellow"></span>' : yield data;
         });
     }
-    translateStates() {
+    translateStates(state) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (state === "Enabled") { //=>
+                return state = "Activo";
+            }
+            else if (state === "Disabled") {
+                return state = "Inactivo";
+            }
         });
     }
     translateDate(data) {

@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { coreServices } from '../_core/services/services.js';
+import { coreServices } from '../../_core/services/services.js';
 export default class DashboardView {
     constructor() {
         this.appContent = document.getElementById("content");
@@ -72,7 +72,7 @@ export default class DashboardView {
                 buttons.classList.add("table-button_group");
                 info_button.innerHTML = `<i class="ph ph-info"></i>`;
                 edit_button.innerHTML = `<i class="ph ph-pencil"></i>`;
-                row.innerHTML = /*html*/ `
+                row.innerHTML = `
                 <td>${index}</td>
                 <td>${yield coreServices.validateData(client.firstName)} ${yield coreServices.validateData(client.lastName)}</td>
                 <td>${yield coreServices.translateDate(client.createdDate)}</td>

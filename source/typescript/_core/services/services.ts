@@ -3,8 +3,12 @@ class Service {
         return await data === undefined ? '<span class="ph ph-warning text:yellow"></span>' : await data;
     }
 
-    public async translateStates() {
-
+    public async translateStates(state: string) {
+        if (state === "Enabled") { //=>
+            return state = "Activo";
+        } else if (state === "Disabled") {
+            return state = "Inactivo";
+        }
     }
 
     public async translateDate(data: any[] | any) {

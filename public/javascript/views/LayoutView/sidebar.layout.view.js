@@ -1,18 +1,17 @@
-import { clientsView } from '../views/ClientsView/clients.view.js';
-import { notesView } from '../views/NotesView/notes.view.js';
-import DashboardController from '../controllers/dashboard.controller.js';
-import DashboardModel from '../models/dashboard.model.js';
-import DashboardView from '../views/dashboard.view.js';
-
-class Sidebar {
-    public render() {
+import DashboardModel from '../../models/dashboard.model.js';
+import DashboardView from '../DashboardView/dashboard.view.js';
+import DashboardController from '../../controllers/dashboard.controller.js';
+import ClientsModel from '../../models/clients.model.js';
+import ClientsView from '../ClientsView/clients.view.js';
+import ClientsController from '../../controllers/clients.controller.js';
+class SidebarView {
+    render() {
         // appContent to clear the content previows render the next view
-        const appContent: HTMLElement = document.getElementById("content")! as HTMLElement;
-        const sidebar: HTMLElement = document.getElementById("sidebar")! as HTMLElement;
+        const appContent = document.getElementById("content");
+        const sidebar = document.getElementById("sidebar");
         const content = document.createElement("div");
         content.classList.add("sidebar");
-
-        content.innerHTML = /*html*/`
+        content.innerHTML = /*html*/ `
                 <button class="sidebar-item" id="sb-dashboard">
                     <i class="ph ph-sidebar-simple"></i>
                     Dashboard
@@ -58,32 +57,23 @@ class Sidebar {
                     Logins
                 </button>
         `;
-
         sidebar.appendChild(content);
-
-        const dashboard: HTMLElement = document.getElementById("sb-dashboard")! as HTMLElement;
-        dashboard?.addEventListener("click", () => {
-            new DashboardController(
-                new DashboardModel(),
-                new DashboardView()
-            ); // Render Dashboard
+        const dashboard = document.getElementById("sb-dashboard");
+        dashboard === null || dashboard === void 0 ? void 0 : dashboard.addEventListener("click", () => {
+            new DashboardController(new DashboardModel(), new DashboardView()); // Render Dashboard
         });
-
-        const clients: HTMLElement = document.getElementById("sb-clients")! as HTMLElement;
-        clients?.addEventListener("click", () => {
-            this.switchContent(clientsView.render(), appContent);
+        const clients = document.getElementById("sb-clients");
+        clients === null || clients === void 0 ? void 0 : clients.addEventListener("click", () => {
+            new ClientsController(new ClientsModel, new ClientsView);
         });
-
-        const notes: HTMLElement = document.getElementById("sb-notes")! as HTMLElement;
-        notes?.addEventListener("click", () => {
+        const notes = document.getElementById("sb-notes");
+        notes === null || notes === void 0 ? void 0 : notes.addEventListener("click", () => {
             this.switchContent(notesView.render(), appContent);
         });
     }
-
-    private switchContent(exec: any, content: HTMLElement): void {
+    switchContent(exec, content) {
         content.innerHTML = "";
         exec;
     }
 }
-
-export const sidebar = new Sidebar();
+export const sidebarView = new SidebarView();
