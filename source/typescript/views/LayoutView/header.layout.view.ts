@@ -8,8 +8,14 @@ class HeaderView {
         contentHeader.classList.add("header-content");
 
         contentHeader.innerHTML = /*html*/`
-                    <div>
-                        <span class="logo">Sysmonk</div>
+                    <div class="user">
+                        <div class="user_picture">
+                            <img src="./public/pictures/profiles/prof_4.png">
+                        </div>
+                        <span class="user_basic_data">
+                            <div class="name">Jane Doe</div>
+                            <div class="area">Intercore Administrator</div>
+                        </div>
                     </div>
                     
                     <div>

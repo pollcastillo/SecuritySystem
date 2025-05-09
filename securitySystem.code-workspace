@@ -9,6 +9,10 @@
             "path": "source/typescript/_core"
         },
         {
+            "name": "Core [OLD]",
+            "path": "source/typescript/Core"
+        },
+        {
             "name": "Models",
             "path": "source/typescript/models"
         },
@@ -19,6 +23,10 @@
         {
             "name": "Controllers",
             "path": "source/typescript/controllers"
+        },
+        {
+            "name": "Styles",
+            "path": "public/css/"
         }
     ],
     "settings": {

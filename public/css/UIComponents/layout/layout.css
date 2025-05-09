@@ -1,3 +1,5 @@
+@import url("./viewHeaderLayout.css");
+
 .app {
     display: flex;
     height: 100vh;
@@ -6,17 +8,43 @@
     overflow: hidden;
     flex-direction: column;
     color: var(--white);
-    background-color: var(--neutral-950);
+    background-color: #121317;
 }
 
 .header {
     padding: 16px;
-    border-bottom: var(--border-solid) var(--neutral-900);
+    border-bottom: var(--border-solid) #24262B;
+    background-color: #171A1F;
 }
 
-.header .logo {
-    font-size: var(--t6);
-    font-weight: 900;
+.header .user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header .user .user_picture {
+    height: 27px;
+    width: 27px;
+    border-radius: 25px;
+    overflow: hidden;
+    border: 1px solid #949699;
+}
+
+.header .user .user_picture img {
+    height: 27px;
+    width: 27px;
+    filter: grayscale();
+}
+
+.header .user .user_basic_data .name,
+.header .user .user_basic_data .area {
+    font-size: .875rem;
+    color: #FFFFFF;
+}
+
+.header .user .user_basic_data .area {
+    color: #FFFFFF;
 }
 
 .header-content {
@@ -53,33 +81,7 @@
     color: var(--white);
 }
 
-/* VIEW HEADER */
-.view-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px;
-}
 
-.view-header h1 {
-    font-size: var(--t4)
-}
-
-.view-header_controls {
-    display: flex;
-    gap: 8px;
-}
-
-.view-header_controls button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    border: none;
-    background-color: transparent;
-    padding: 4px;
-    color: var(--white);
-}
 
 /* THEME */
 @media (prefers-color-scheme: light) {
@@ -89,10 +91,28 @@
     }
 
     .header {
-        border-color: var(--neutral-100);
+        background-color: #F4F6F7;
+        border-color: #ECEEF0;
     }
 
     .header-button_group button {
         color: var(--black);
+    }
+
+    .header .user .user_picture {
+        border: 1px solid #949699;
+    }
+
+    .header .user .user_picture img {
+        filter: grayscale();
+    }
+
+    .header .user .user_basic_data .name,
+    .header .user .user_basic_data .area {
+        color: #939599;
+    }
+
+    .header .user .user_basic_data .area {
+        color: #616368;
     }
 }
